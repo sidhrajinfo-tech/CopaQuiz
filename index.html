@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Computer Basics Quiz</title>
+<style>
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    padding:20px;
+}
+
+/* Glass Container */
+.container{
+    width:100%;
+    max-width:900px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    animation:fadeIn 1s ease-in-out;
+    color:white;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+    font-weight:700;
+}
+
+/* Question Card */
+.question{
+    background:rgba(255,255,255,0.1);
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:15px;
+    transition:0.3s;
+}
+
+.question:hover{
+    transform:scale(1.02);
+    background:rgba(255,255,255,0.2);
+}
+
+/* Radio buttons */
+label{
+    display:block;
+    margin:5px 0;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+label:hover{
+    transform:translateX(5px);
+}
+
+/* Button */
+button{
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(45deg,#ff6a00,#ee0979);
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+    margin-top:15px;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Result */
+#result{
+    margin-top:20px;
+    text-align:center;
+    font-size:22px;
+    font-weight:600;
+    opacity:0;
+    transform:translateY(20px);
+    transition:0.5s ease-in-out;
+}
+
+/* Fade Animation */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Computer Basics Quiz (30 MCQs)</h1>
+<form id="quizForm"></form>
+<button onclick="submitQuiz()">Submit Quiz</button>
+<div id="result"></div>
+</div>
+
+<script>
+const questions = [
+{q:"1. CPU ka full form kya hai?", options:["Central Processing Unit","Computer Personal Unit","Central Print Unit","Control Processing Unit"], answer:0},
+{q:"2. Computer ka brain kise kehte hain?", options:["RAM","CPU","Monitor","Keyboard"], answer:1},
+{q:"3. Input device ka example?", options:["Monitor","Printer","Keyboard","Speaker"], answer:2},
+{q:"4. RAM ka type kya hai?", options:["Permanent","Volatile","External","Secondary"], answer:1},
+{q:"5. Operating System ka example?", options:["Windows","Mouse","CPU","Excel"], answer:0},
+
+{q:"6. MS Word ka use kis liye hota hai?", options:["Presentation","Document typing","Calculation","Coding"], answer:1},
+{q:"7. Word me spelling check shortcut?", options:["F7","F5","Ctrl+S","Alt+F4"], answer:0},
+{q:"8. Word file extension kya hai?", options:[".xls",".docx",".ppt",".html"], answer:1},
+{q:"9. Bold shortcut kya hai?", options:["Ctrl+B","Ctrl+I","Ctrl+U","Ctrl+P"], answer:0},
+{q:"10. Page layout option kahan hota hai?", options:["Home","Insert","Layout","View"], answer:2},
+
+{q:"11. Excel ka use?", options:["Typing","Presentation","Calculation","Design"], answer:2},
+{q:"12. Excel file extension?", options:[".docx",".ppt",".xlsx",".html"], answer:2},
+{q:"13. Formula start hota hai?", options:["#","@","=","$"], answer:2},
+{q:"14. SUM function ka use?", options:["Multiply","Add","Divide","Subtract"], answer:1},
+{q:"15. Cell ka address example?", options:["1A","A1","AA","11A"], answer:1},
+
+{q:"16. PowerPoint ka use?", options:["Typing","Presentation","Calculation","Coding"], answer:1},
+{q:"17. PowerPoint file extension?", options:[".pptx",".docx",".xlsx",".txt"], answer:0},
+{q:"18. Slide show shortcut?", options:["F5","F2","F7","F12"], answer:0},
+{q:"19. New slide shortcut?", options:["Ctrl+M","Ctrl+N","Ctrl+S","Ctrl+P"], answer:0},
+{q:"20. Animation kahan add hoti hai?", options:["Insert","Design","Animation","Home"], answer:2},
+
+{q:"21. HTML ka full form?", options:["Hyper Text Markup Language","High Text Machine Language","Hyper Tool Multi Language","Home Tool Markup Language"], answer:0},
+{q:"22. HTML me paragraph tag?", options:["p","h1","div","span"], answer:0},
+{q:"23. CSS ka full form?", options:["Creative Style Sheet","Cascading Style Sheet","Colorful Style Sheet","Computer Style Sheet"], answer:1},
+{q:"24. CSS ka use?", options:["Structure","Styling","Database","Server"], answer:1},
+{q:"25. JavaScript ka use?", options:["Styling","Structure","Interactivity","Database"], answer:2},
+
+{q:"26. JS me variable declare karte hain?", options:["int","var","define","dim"], answer:1},
+{q:"27. JS output console me kaise?", options:["print()","echo()","console.log()","write()"], answer:2},
+{q:"28. CSS file extension?", options:[".html",".css",".js",".xml"], answer:1},
+{q:"29. HTML me image tag?", options:["img","image","pic","src"], answer:0},
+{q:"30. JS event example?", options:["onclick","onprint","onstyle","oncss"], answer:0}
+];
+
+const form = document.getElementById("quizForm");
+
+questions.forEach((item,index)=>{
+    let div = document.createElement("div");
+    div.classList.add("question");
+    div.innerHTML = `<p>${item.q}</p>`;
+    item.options.forEach((opt,i)=>{
+        div.innerHTML += `
+        <label>
+        <input type="radio" name="q${index}" value="${i}">
+        ${opt}
+        </label><br>`;
+    });
+    form.appendChild(div);
+});
+
+function submitQuiz(){
+    let score = 0;
+
+    questions.forEach((item,index)=>{
+        let answer = document.querySelector(`input[name="q${index}"]:checked`);
+        if(answer && parseInt(answer.value) === item.answer){
+            score++;
+        }
+    });
+
+    let result = document.getElementById("result");
+    result.innerHTML = "Your Score is " + score + " / " + questions.length;
+
+    // Color based on performance
+    if(score >= 25){
+        result.style.color = "#00ffae";
+    } else if(score >= 15){
+        result.style.color = "#ffd369";
+    } else {
+        result.style.color = "#ff4b5c";
+    }
+
+    // Animation trigger
+    result.style.opacity = "1";
+    result.style.transform = "translateY(0)";
+
+    // Smooth scroll to result
+    result.scrollIntoView({behavior:"smooth"});
+}</script>
+
+</body>
+</html>
