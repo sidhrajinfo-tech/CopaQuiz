@@ -1,203 +1,454 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Computer Basics Quiz</title>
+
 <style>
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#667eea,#764ba2);
-    padding:20px;
+min-height:100vh;
+background:linear-gradient(135deg,#667eea,#764ba2);
+display:flex;
+justify-content:center;
+align-items:flex-start;
+padding:30px 10px;
 }
 
-/* Glass Container */
 .container{
-    width:100%;
-    max-width:900px;
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(15px);
-    border-radius:20px;
-    padding:30px;
-    box-shadow:0 20px 40px rgba(0,0,0,0.2);
-    animation:fadeIn 1s ease-in-out;
-    color:white;
+width:100%;
+max-width:900px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(20px);
+border-radius:20px;
+padding:30px;
+box-shadow:0 10px 40px rgba(0,0,0,0.2);
+border:1px solid rgba(255,255,255,0.2);
 }
 
 h1{
-    text-align:center;
-    margin-bottom:20px;
-    font-weight:700;
+text-align:center;
+color:white;
+margin-bottom:30px;
+font-weight:600;
 }
 
-/* Question Card */
 .question{
-    background:rgba(255,255,255,0.1);
-    padding:15px;
-    border-radius:12px;
-    margin-bottom:15px;
-    transition:0.3s;
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+transition:0.3s;
+animation:fadeUp 0.6s ease;
 }
 
 .question:hover{
-    transform:scale(1.02);
-    background:rgba(255,255,255,0.2);
+transform:translateY(-3px);
 }
 
-/* Radio buttons */
-label{
-    display:block;
-    margin:5px 0;
-    cursor:pointer;
-    transition:0.3s;
+.question p{
+font-weight:500;
+margin-bottom:10px;
 }
 
-label:hover{
-    transform:translateX(5px);
+.options label{
+display:flex;
+align-items:center;
+padding:12px;
+margin:6px 0;
+border-radius:8px;
+border:1px solid #eee;
+cursor:pointer;
+transition:0.25s;
 }
 
-/* Button */
+.options label:hover{
+background:#f5f7ff;
+border-color:#667eea;
+}
+
+.options input{
+margin-right:10px;
+transform:scale(1.2);
+}
+
 button{
-    width:100%;
-    padding:12px;
-    font-size:18px;
-    border:none;
-    border-radius:12px;
-    background:linear-gradient(45deg,#ff6a00,#ee0979);
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
-    margin-top:15px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#667eea,#764ba2);
+color:white;
+font-size:18px;
+font-weight:500;
+cursor:pointer;
+transition:0.3s;
 }
 
 button:hover{
-    transform:scale(1.05);
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transform:scale(1.03);
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
 }
 
-/* Result */
+.correct{
+background:#e6ffed !important;
+border:2px solid #28a745 !important;
+}
+
+.wrong{
+background:#ffe6e6 !important;
+border:2px solid #ff4d4d !important;
+}
+
 #result{
-    margin-top:20px;
-    text-align:center;
-    font-size:22px;
-    font-weight:600;
-    opacity:0;
-    transform:translateY(20px);
-    transition:0.5s ease-in-out;
+margin-top:30px;
+font-size:24px;
+text-align:center;
+color:white;
+font-weight:600;
 }
 
-/* Fade Animation */
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
+.progress{
+width:100%;
+height:10px;
+background:#ddd;
+border-radius:10px;
+margin-bottom:20px;
+overflow:hidden;
 }
+
+.progress-bar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#00f2fe,#4facfe);
+transition:0.4s;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:600px){
+
+.container{
+padding:15px;
+}
+
+.question{
+padding:15px;
+}
+
+}
+
 </style>
 </head>
+
 <body>
 
 <div class="container">
-<h1>Computer Basics Quiz (30 MCQs)</h1>
+
+<h1>Computer Basics Quiz (100 MCQ)</h1>
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+
 <form id="quizForm"></form>
+
 <button onclick="submitQuiz()">Submit Quiz</button>
+
 <div id="result"></div>
+
 </div>
 
 <script>
-const questions = [
-{q:"1. CPU ka full form kya hai?", options:["Central Processing Unit","Computer Personal Unit","Central Print Unit","Control Processing Unit"], answer:0},
-{q:"2. Computer ka brain kise kehte hain?", options:["RAM","CPU","Monitor","Keyboard"], answer:1},
-{q:"3. Input device ka example?", options:["Monitor","Printer","Keyboard","Speaker"], answer:2},
-{q:"4. RAM ka type kya hai?", options:["Permanent","Volatile","External","Secondary"], answer:1},
-{q:"5. Operating System ka example?", options:["Windows","Mouse","CPU","Excel"], answer:0},
 
-{q:"6. MS Word ka use kis liye hota hai?", options:["Presentation","Document typing","Calculation","Coding"], answer:1},
-{q:"7. Word me spelling check shortcut?", options:["F7","F5","Ctrl+S","Alt+F4"], answer:0},
-{q:"8. Word file extension kya hai?", options:[".xls",".docx",".ppt",".html"], answer:1},
-{q:"9. Bold shortcut kya hai?", options:["Ctrl+B","Ctrl+I","Ctrl+U","Ctrl+P"], answer:0},
-{q:"10. Page layout option kahan hota hai?", options:["Home","Insert","Layout","View"], answer:2},
+const quizData = [
 
-{q:"11. Excel ka use?", options:["Typing","Presentation","Calculation","Design"], answer:2},
-{q:"12. Excel file extension?", options:[".docx",".ppt",".xlsx",".html"], answer:2},
-{q:"13. Formula start hota hai?", options:["#","@","=","$"], answer:2},
-{q:"14. SUM function ka use?", options:["Multiply","Add","Divide","Subtract"], answer:1},
-{q:"15. Cell ka address example?", options:["1A","A1","AA","11A"], answer:1},
+{q:"1. CPU stands for?",o:["Central Processing Unit","Central Program Unit","Computer Processing Unit","Control Processing Unit"],a:0},
+{q:"2. Which device is an input device?",o:["Keyboard","Monitor","Printer","Speaker"],a:0},
+{q:"3. Which device is an output device?",o:["Scanner","Keyboard","Monitor","Mouse"],a:2},
+{q:"4. Brain of computer?",o:["RAM","CPU","Hard Disk","Motherboard"],a:1},
+{q:"5. First computer was developed by?",o:["Charles Babbage","Bill Gates","Steve Jobs","Alan Turing"],a:0},
+{q:"6. Full form of RAM?",o:["Random Access Memory","Read Access Memory","Run Access Memory","Rapid Access Memory"],a:0},
+{q:"7. Full form of ROM?",o:["Read Only Memory","Run Only Memory","Random Only Memory","Read Open Memory"],a:0},
+{q:"8. Operating System example?",o:["Windows","Word","Excel","Paint"],a:0},
+{q:"9. Which is storage device?",o:["Hard Disk","Keyboard","Mouse","Printer"],a:0},
+{q:"10. DOS stands for?",o:["Disk Operating System","Data Operating System","Digital OS","Disk Open System"],a:0},
 
-{q:"16. PowerPoint ka use?", options:["Typing","Presentation","Calculation","Coding"], answer:1},
-{q:"17. PowerPoint file extension?", options:[".pptx",".docx",".xlsx",".txt"], answer:0},
-{q:"18. Slide show shortcut?", options:["F5","F2","F7","F12"], answer:0},
-{q:"19. New slide shortcut?", options:["Ctrl+M","Ctrl+N","Ctrl+S","Ctrl+P"], answer:0},
-{q:"20. Animation kahan add hoti hai?", options:["Insert","Design","Animation","Home"], answer:2},
+{q:"11. Copy shortcut key?",o:["Ctrl+C","Ctrl+V","Ctrl+X","Ctrl+P"],a:0},
+{q:"12. Paste shortcut key?",o:["Ctrl+V","Ctrl+C","Ctrl+X","Ctrl+Z"],a:0},
+{q:"13. Undo shortcut?",o:["Ctrl+Y","Ctrl+Z","Ctrl+X","Ctrl+U"],a:1},
+{q:"14. Save shortcut?",o:["Ctrl+S","Ctrl+D","Ctrl+A","Ctrl+W"],a:0},
+{q:"15. Select all shortcut?",o:["Ctrl+A","Ctrl+S","Ctrl+D","Ctrl+E"],a:0},
 
-{q:"21. HTML ka full form?", options:["Hyper Text Markup Language","High Text Machine Language","Hyper Tool Multi Language","Home Tool Markup Language"], answer:0},
-{q:"22. HTML me paragraph tag?", options:["p","h1","div","span"], answer:0},
-{q:"23. CSS ka full form?", options:["Creative Style Sheet","Cascading Style Sheet","Colorful Style Sheet","Computer Style Sheet"], answer:1},
-{q:"24. CSS ka use?", options:["Structure","Styling","Database","Server"], answer:1},
-{q:"25. JavaScript ka use?", options:["Styling","Structure","Interactivity","Database"], answer:2},
+{q:"16. Input device example?",o:["Scanner","Monitor","Printer","Speaker"],a:0},
+{q:"17. Mouse is?",o:["Input device","Output device","Storage","CPU"],a:0},
+{q:"18. Printer is?",o:["Input device","Output device","Memory","CPU"],a:1},
+{q:"19. Monitor type?",o:["Output device","Input device","Memory","CPU"],a:0},
+{q:"20. Keyboard keys?",o:["Input","Output","Memory","Process"],a:0},
 
-{q:"26. JS me variable declare karte hain?", options:["int","var","define","dim"], answer:1},
-{q:"27. JS output console me kaise?", options:["print()","echo()","console.log()","write()"], answer:2},
-{q:"28. CSS file extension?", options:[".html",".css",".js",".xml"], answer:1},
-{q:"29. HTML me image tag?", options:["img","image","pic","src"], answer:0},
-{q:"30. JS event example?", options:["onclick","onprint","onstyle","oncss"], answer:0}
+{q:"21. File extension of MS Word?",o:[".docx",".xls",".ppt",".txt"],a:0},
+{q:"22. Excel extension?",o:[".xls",".doc",".ppt",".png"],a:0},
+{q:"23. PowerPoint extension?",o:[".ppt",".doc",".txt",".jpg"],a:0},
+{q:"24. Image extension?",o:[".jpg",".exe",".mp3",".html"],a:0},
+{q:"25. Webpage extension?",o:[".html",".doc",".xls",".mp3"],a:0},
+
+{q:"26. DOS command to list files?",o:["DIR","COPY","DEL","CLS"],a:0},
+{q:"27. DOS command to clear screen?",o:["CLS","DIR","COPY","DEL"],a:0},
+{q:"28. DOS delete command?",o:["DEL","DIR","CLS","COPY"],a:0},
+{q:"29. Copy command?",o:["COPY","DIR","DEL","CLS"],a:0},
+{q:"30. Change directory command?",o:["CD","DIR","COPY","CLS"],a:0},
+
+{q:"31. Which device is used to scan documents?",o:["Scanner","Printer","Monitor","Speaker"],a:0},
+
+{q:"32. Which is not an input device?",o:["Keyboard","Mouse","Monitor","Scanner"],a:2},
+
+{q:"33. Which memory is temporary?",o:["RAM","ROM","Hard Disk","CD"],a:0},
+
+{q:"34. Which memory is permanent?",o:["ROM","RAM","Cache","Register"],a:0},
+
+{q:"35. Full form of CPU?",o:["Central Processing Unit","Central Program Unit","Control Processing Unit","Computer Processing Utility"],a:0},
+
+{q:"36. Which company developed Windows?",o:["Microsoft","Apple","IBM","Google"],a:0},
+
+{q:"37. Linux is a?",o:["Operating System","Application","Browser","Compiler"],a:0},
+
+{q:"38. Which is not an operating system?",o:["Windows","Linux","Oracle","MacOS"],a:2},
+
+{q:"39. Hard disk is used for?",o:["Storage","Input","Output","Processing"],a:0},
+
+{q:"40. Which device shows output on screen?",o:["Monitor","Printer","Scanner","Mouse"],a:0},
+
+{q:"41. Full form of USB?",o:["Universal Serial Bus","Unique System Bus","Universal System Base","United Serial Bus"],a:0},
+
+{q:"42. Which device controls cursor?",o:["Mouse","Printer","Keyboard","Scanner"],a:0},
+
+{q:"43. First mechanical computer?",o:["Analytical Engine","ENIAC","UNIVAC","Mark I"],a:0},
+
+{q:"44. Who is called father of computer?",o:["Charles Babbage","Bill Gates","Steve Jobs","Alan Turing"],a:0},
+
+{q:"45. Shortcut for Print?",o:["Ctrl+P","Ctrl+O","Ctrl+N","Ctrl+L"],a:0},
+
+{q:"46. Shortcut for Open?",o:["Ctrl+O","Ctrl+S","Ctrl+P","Ctrl+N"],a:0},
+
+{q:"47. Shortcut for New document?",o:["Ctrl+N","Ctrl+O","Ctrl+S","Ctrl+P"],a:0},
+
+{q:"48. Shortcut for Cut?",o:["Ctrl+X","Ctrl+C","Ctrl+V","Ctrl+Z"],a:0},
+
+{q:"49. Shortcut for Redo?",o:["Ctrl+Y","Ctrl+Z","Ctrl+C","Ctrl+P"],a:0},
+
+{q:"50. Which key refreshes webpage?",o:["F5","F2","F3","F1"],a:0},
+
+{q:"51. DOS command to rename file?",o:["REN","DEL","DIR","CLS"],a:0},
+
+{q:"52. DOS command to create directory?",o:["MD","CD","RD","DIR"],a:0},
+
+{q:"53. DOS command to remove directory?",o:["RD","MD","CD","DIR"],a:0},
+
+{q:"54. DOS command to show date?",o:["DATE","TIME","DIR","CLS"],a:0},
+
+{q:"55. DOS command to show time?",o:["TIME","DATE","DIR","CLS"],a:0},
+
+{q:"56. File extension of text file?",o:[".txt",".doc",".ppt",".xls"],a:0},
+
+{q:"57. Audio file extension?",o:[".mp3",".jpg",".doc",".ppt"],a:0},
+
+{q:"58. Video file extension?",o:[".mp4",".txt",".doc",".xls"],a:0},
+
+{q:"59. PDF extension?",o:[".pdf",".doc",".txt",".ppt"],a:0},
+
+{q:"60. Executable file extension?",o:[".exe",".txt",".doc",".jpg"],a:0},
+
+{q:"61. Which device prints documents?",o:["Printer","Scanner","Monitor","Keyboard"],a:0},
+
+{q:"62. Keyboard has how many basic keys?",o:["104","50","60","80"],a:0},
+
+{q:"63. Brain of computer?",o:["CPU","RAM","Hard Disk","ROM"],a:0},
+
+{q:"64. Computer processes data into?",o:["Information","Data","Files","Numbers"],a:0},
+
+{q:"65. Which is secondary storage?",o:["Hard Disk","RAM","Cache","Register"],a:0},
+
+{q:"66. Which is fastest memory?",o:["Cache","RAM","ROM","Hard Disk"],a:0},
+
+{q:"67. Which is portable storage?",o:["Pen Drive","RAM","CPU","Monitor"],a:0},
+
+{q:"68. Which company developed MacOS?",o:["Apple","Microsoft","Google","IBM"],a:0},
+
+{q:"69. Which is web browser?",o:["Chrome","Windows","Linux","DOS"],a:0},
+
+{q:"70. HTML stands for?",o:["HyperText Markup Language","HighText Machine Language","Hyper Tool Mark Language","Hyperlink Text Management Language"],a:0},
+
+{q:"71. CSS stands for?",o:["Cascading Style Sheets","Creative Style Sheets","Computer Style Sheets","Colorful Style Sheets"],a:0},
+
+{q:"72. JS stands for?",o:["JavaScript","JavaSource","JustScript","JoinScript"],a:0},
+
+{q:"73. Which key deletes text?",o:["Delete","Insert","Home","End"],a:0},
+
+{q:"74. Which key moves cursor to new line?",o:["Enter","Tab","Shift","Ctrl"],a:0},
+
+{q:"75. Which key creates space?",o:["Spacebar","Enter","Tab","Shift"],a:0},
+
+{q:"76. Which key capitalizes letters?",o:["Caps Lock","Shift","Ctrl","Alt"],a:0},
+
+{q:"77. Shortcut for find?",o:["Ctrl+F","Ctrl+G","Ctrl+H","Ctrl+I"],a:0},
+
+{q:"78. Shortcut for replace?",o:["Ctrl+H","Ctrl+F","Ctrl+G","Ctrl+R"],a:0},
+
+{q:"79. Shortcut for bold?",o:["Ctrl+B","Ctrl+I","Ctrl+U","Ctrl+L"],a:0},
+
+{q:"80. Shortcut for italic?",o:["Ctrl+I","Ctrl+B","Ctrl+U","Ctrl+P"],a:0},
+
+{q:"81. Shortcut for underline?",o:["Ctrl+U","Ctrl+B","Ctrl+I","Ctrl+L"],a:0},
+
+{q:"82. Which device converts hard copy to digital?",o:["Scanner","Printer","Monitor","Mouse"],a:0},
+
+{q:"83. Which device produces sound?",o:["Speaker","Monitor","Printer","Scanner"],a:0},
+
+{q:"84. Which memory stores BIOS?",o:["ROM","RAM","Cache","Register"],a:0},
+
+{q:"85. BIOS stands for?",o:["Basic Input Output System","Binary Input Output System","Basic Internal Operating System","Binary Internal Output System"],a:0},
+
+{q:"86. Which key is used with shortcuts?",o:["Ctrl","Enter","Shift","Space"],a:0},
+
+{q:"87. Internet is?",o:["Network of networks","Single network","Computer device","Software"],a:0},
+
+{q:"88. Email stands for?",o:["Electronic Mail","Easy Mail","Electric Mail","Exchange Mail"],a:0},
+
+{q:"89. WWW stands for?",o:["World Wide Web","World Web Wide","Wide World Web","Web World Wide"],a:0},
+
+{q:"90. Website is collection of?",o:["Web pages","Files","Programs","Images"],a:0},
+
+{q:"91. Google is a?",o:["Search Engine","Operating System","Browser","Compiler"],a:0},
+
+{q:"92. Keyboard shortcut to close window?",o:["Alt+F4","Ctrl+F4","Shift+F4","Ctrl+Alt"],a:0},
+
+{q:"93. Windows key opens?",o:["Start Menu","Taskbar","Browser","Explorer"],a:0},
+
+{q:"94. Folder stores?",o:["Files","Programs","CPU","RAM"],a:0},
+
+{q:"95. Recycle bin stores?",o:["Deleted files","Images","Programs","Videos"],a:0},
+
+{q:"96. Antivirus protects from?",o:["Virus","Hardware","Internet","Printer"],a:0},
+
+{q:"97. Virus is?",o:["Malicious software","Hardware","Input device","Output device"],a:0},
+
+{q:"98. LAN stands for?",o:["Local Area Network","Large Area Network","Long Area Network","Low Area Network"],a:0},
+
+{q:"99. WAN stands for?",o:["Wide Area Network","World Area Network","Web Area Network","Wireless Area Network"],a:0},
+
+{q:"100. GUI stands for?",o:["Graphical User Interface","Graphic Utility Interface","General User Interface","Graphical Utility Input"],a:0}
+
+
 ];
 
-const form = document.getElementById("quizForm");
 
-questions.forEach((item,index)=>{
-    let div = document.createElement("div");
-    div.classList.add("question");
-    div.innerHTML = `<p>${item.q}</p>`;
-    item.options.forEach((opt,i)=>{
-        div.innerHTML += `
-        <label>
-        <input type="radio" name="q${index}" value="${i}">
-        ${opt}
-        </label><br>`;
-    });
-    form.appendChild(div);
+const quizForm=document.getElementById("quizForm");
+
+quizData.forEach((data,index)=>{
+
+let qDiv=document.createElement("div");
+qDiv.classList.add("question");
+
+let html=`<p>${data.q}</p><div class="options">`;
+
+data.o.forEach((opt,i)=>{
+
+html+=`
+<label>
+<input type="radio" name="q${index}" value="${i}">
+${opt}
+</label>
+`;
+
+});
+
+html+=`</div>`;
+
+qDiv.innerHTML=html;
+
+quizForm.appendChild(qDiv);
+
 });
 
 function submitQuiz(){
-    let score = 0;
 
-    questions.forEach((item,index)=>{
-        let answer = document.querySelector(`input[name="q${index}"]:checked`);
-        if(answer && parseInt(answer.value) === item.answer){
-            score++;
-        }
-    });
+let score=0;
 
-    let result = document.getElementById("result");
-    result.innerHTML = "Your Score is " + score + " / " + questions.length;
+quizData.forEach((data,index)=>{
 
-    // Color based on performance
-    if(score >= 25){
-        result.style.color = "#00ffae";
-    } else if(score >= 15){
-        result.style.color = "#ffd369";
-    } else {
-        result.style.color = "#ff4b5c";
-    }
+let selected=document.querySelector(`input[name="q${index}"]:checked`);
 
-    // Animation trigger
-    result.style.opacity = "1";
-    result.style.transform = "translateY(0)";
+let options=document.getElementsByName(`q${index}`);
 
-    // Smooth scroll to result
-    result.scrollIntoView({behavior:"smooth"});
-}</script>
+options.forEach((opt,i)=>{
+
+let label=opt.parentElement;
+
+if(i==data.a){
+
+label.classList.add("correct");
+
+}
+
+if(selected && i==selected.value && i!=data.a){
+
+label.classList.add("wrong");
+
+}
+
+});
+
+if(selected && selected.value==data.a){
+
+score++;
+
+}
+
+});
+
+document.getElementById("result").innerHTML="Your Score: "+score+" / 100";
+
+window.scrollTo(0,document.body.scrollHeight);
+
+}
+
+const totalQuestions = quizData.length;
+
+document.addEventListener("change",function(e){
+
+if(e.target.type==="radio"){
+
+let answered = document.querySelectorAll("input[type=radio]:checked").length;
+
+let percent = (answered / totalQuestions) * 100;
+
+document.getElementById("progressBar").style.width = percent + "%";
+
+}
+
+});
+document.getElementById("result").style.animation="fadeUp 0.6s ease";
+
+</script>
 
 </body>
 </html>
