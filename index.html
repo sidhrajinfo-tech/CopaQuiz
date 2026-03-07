@@ -1,161 +1,90 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Computer Basics Quiz</title>
+
+<title>Computer Quiz Portal</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
 
 body{
-min-height:100vh;
+font-family:Arial;
 background:linear-gradient(135deg,#667eea,#764ba2);
-display:flex;
-justify-content:center;
-align-items:flex-start;
-padding:30px 10px;
+min-height:100vh;
+padding:30px;
 }
 
 .container{
-width:100%;
 max-width:900px;
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(20px);
-border-radius:20px;
-padding:30px;
-box-shadow:0 10px 40px rgba(0,0,0,0.2);
-border:1px solid rgba(255,255,255,0.2);
+margin:auto;
+background:white;
+padding:25px;
+border-radius:12px;
 }
 
 h1{
 text-align:center;
+}
+
+.topic-btn{
+display:block;
+width:100%;
+padding:15px;
+margin:10px 0;
+font-size:18px;
+cursor:pointer;
+background:#667eea;
 color:white;
-margin-bottom:30px;
-font-weight:600;
+border:none;
+border-radius:8px;
 }
 
 .question{
-background:white;
-padding:20px;
-margin-bottom:20px;
-border-radius:12px;
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
-transition:0.3s;
-animation:fadeUp 0.6s ease;
-}
-
-.question:hover{
-transform:translateY(-3px);
-}
-
-.question p{
-font-weight:500;
-margin-bottom:10px;
+padding:15px;
+border:1px solid #ddd;
+margin-bottom:15px;
+border-radius:8px;
 }
 
 .options label{
-display:flex;
-align-items:center;
-padding:12px;
-margin:6px 0;
-border-radius:8px;
-border:1px solid #eee;
+display:block;
+padding:6px;
 cursor:pointer;
-transition:0.25s;
-}
-
-.options label:hover{
-background:#f5f7ff;
-border-color:#667eea;
-}
-
-.options input{
-margin-right:10px;
-transform:scale(1.2);
 }
 
 button{
-width:100%;
-padding:14px;
-border:none;
-border-radius:12px;
-background:linear-gradient(135deg,#667eea,#764ba2);
-color:white;
+padding:12px;
 font-size:18px;
-font-weight:500;
-cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.03);
-box-shadow:0 5px 20px rgba(0,0,0,0.2);
-}
-
-.correct{
-background:#e6ffed !important;
-border:2px solid #28a745 !important;
-}
-
-.wrong{
-background:#ffe6e6 !important;
-border:2px solid #ff4d4d !important;
-}
-
-#result{
-margin-top:30px;
-font-size:24px;
-text-align:center;
+background:#764ba2;
 color:white;
-font-weight:600;
+border:none;
+border-radius:8px;
+cursor:pointer;
+width:100%;
 }
 
 .progress{
-width:100%;
 height:10px;
 background:#ddd;
-border-radius:10px;
 margin-bottom:20px;
+border-radius:10px;
 overflow:hidden;
 }
 
 .progress-bar{
 height:100%;
 width:0%;
-background:linear-gradient(90deg,#00f2fe,#4facfe);
-transition:0.4s;
+background:#4facfe;
 }
 
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+.correct{
+background:#d4edda;
 }
 
-@media(max-width:600px){
-
-.container{
-padding:15px;
-}
-
-.question{
-padding:15px;
-}
-
+.wrong{
+background:#f8d7da;
 }
 
 </style>
@@ -165,7 +94,24 @@ padding:15px;
 
 <div class="container">
 
-<h1>Computer Basics Quiz (100 MCQ)</h1>
+<!-- TOPIC PAGE -->
+
+<div id="topicPage">
+
+<h1>Select Quiz Topic</h1>
+
+<button class="topic-btn" onclick="loadQuiz('WordAndExcel')">MS Word adn MS Excel</button>
+
+<button class="topic-btn" onclick="loadQuiz('ComputerBasics')">Computer Basics</button>
+
+</div>
+
+<!-- QUIZ PAGE -->
+
+<div id="quizPage" style="display:none">
+
+<h1 id="quizTitle"></h1>
+
 <div class="progress">
 <div class="progress-bar" id="progressBar"></div>
 </div>
@@ -174,13 +120,162 @@ padding:15px;
 
 <button onclick="submitQuiz()">Submit Quiz</button>
 
-<div id="result"></div>
+<button onclick="goHome()" style="margin-top:10px;background:#444;">
+Back to Main Menu
+</button>
+
+
+<div id="result" style="margin-top:20px;font-size:22px"></div>
+
+</div>
 
 </div>
 
 <script>
 
-const quizData = [
+//////////////////////////
+//// QUIZ DATA
+//////////////////////////
+
+const quizzes={
+
+WordAndExcel:[
+
+// ADD YOUR WORD MCQ HERE
+
+{q:"1. MS Word is a type of?",o:["Word Processing Software","Spreadsheet Software","Presentation Software","Database Software"],a:0},
+{q:"2. File extension of MS Word 2007 and later?",o:[".doc",".xls",".docx",".ppt"],a:2},
+{q:"3. Shortcut for copy in MS Word?",o:["Ctrl+C","Ctrl+V","Ctrl+X","Ctrl+P"],a:0},
+{q:"4. Shortcut for paste?",o:["Ctrl+X","Ctrl+P","Ctrl+V","Ctrl+A"],a:2},
+{q:"5. Shortcut for save?",o:["Ctrl+S","Ctrl+D","Ctrl+F","Ctrl+E"],a:0},
+{q:"6. Which tab is used for formatting text?",o:["Home","Insert","Review","View"],a:0},
+{q:"7. To make text bold shortcut?",o:["Ctrl+B","Ctrl+I","Ctrl+U","Ctrl+L"],a:0},
+{q:"8. To italic text shortcut?",o:["Ctrl+U","Ctrl+B","Ctrl+I","Ctrl+P"],a:2},
+{q:"9. Underline shortcut?",o:["Ctrl+U","Ctrl+B","Ctrl+I","Ctrl+R"],a:0},
+{q:"10. Which option aligns text to center?",o:["Left Align","Center Align","Right Align","Justify"],a:1},
+{q:"11. Which tab is used to insert table?",o:["Insert","Design","Home","View"],a:0},
+{q:"12. Header and Footer option is in?",o:["Insert tab","Home tab","Layout tab","Review tab"],a:0},
+{q:"13. Page orientation option is in?",o:["Layout","Insert","Review","View"],a:0},
+{q:"14. Portrait and Landscape are types of?",o:["Margins","Orientation","Size","Indent"],a:1},
+{q:"15. Spell check shortcut?",o:["F7","F5","F1","F9"],a:0},
+{q:"16. Find shortcut?",o:["Ctrl+H","Ctrl+F","Ctrl+G","Ctrl+K"],a:1},
+{q:"17. Replace shortcut?",o:["Ctrl+H","Ctrl+F","Ctrl+G","Ctrl+E"],a:0},
+{q:"18. To select all text?",o:["Ctrl+A","Ctrl+S","Ctrl+T","Ctrl+Q"],a:0},
+{q:"19. Bullet list option is in?",o:["Home","Insert","View","Review"],a:0},
+{q:"20. Line spacing option is in?",o:["Home tab","Insert tab","Review tab","View tab"],a:0},
+{q:"21. MS Excel is used for?",o:["Text editing","Spreadsheet calculations","Image editing","Video editing"],a:1},
+{q:"22. File extension of Excel 2007+?",o:[".xls",".xlsx",".ppt",".doc"],a:1},
+{q:"23. Intersection of row and column is called?",o:["Cell","Table","Sheet","Range"],a:0},
+{q:"24. Excel workbook contains?",o:["Sheets","Slides","Pages","Files"],a:0},
+{q:"25. Maximum rows in Excel 2007+?",o:["65536","1048576","100000","500000"],a:1},
+{q:"26. Maximum columns in Excel 2007+?",o:["256","512","1024","16384"],a:3},
+{q:"27. Formula in Excel begins with?",o:["=","+","-","@"],a:0},
+{q:"28. SUM function is used for?",o:["Addition","Subtraction","Multiplication","Division"],a:0},
+{q:"29. Average function calculates?",o:["Sum","Mean","Count","Maximum"],a:1},
+{q:"30. COUNT function counts?",o:["Text","Numbers","Both","None"],a:1},
+{q:"31. Shortcut to edit cell?",o:["F1","F2","F5","F9"],a:1},
+{q:"32. To insert new worksheet?",o:["Shift+F11","Ctrl+F11","Alt+F11","F11"],a:0},
+{q:"33. Which chart shows data graphically?",o:["Chart","Table","Cell","Range"],a:0},
+{q:"34. Pie chart represents?",o:["Parts of whole","Comparison","Trend","Frequency"],a:0},
+{q:"35. Bar chart is used for?",o:["Comparison","Part of whole","Text","Images"],a:0},
+{q:"36. Cell address example?",o:["A1","1A","AA","11"],a:0},
+{q:"37. Range example?",o:["A1:B5","A1B5","A1-B5","A1/B5"],a:0},
+{q:"38. Function wizard shortcut?",o:["Shift+F3","Ctrl+F3","Alt+F3","F3"],a:0},
+{q:"39. To merge cells option?",o:["Merge & Center","Wrap Text","Format","Sort"],a:0},
+{q:"40. Wrap Text does?",o:["Wraps text in cell","Deletes text","Moves text","Copies text"],a:0},
+{q:"41. Sorting means?",o:["Arrange data","Delete data","Copy data","Move data"],a:0},
+{q:"42. Filter option is used to?",o:["Show specific data","Delete rows","Add columns","Print sheet"],a:0},
+{q:"43. Conditional formatting is used for?",o:["Highlight data","Delete data","Insert chart","Merge cells"],a:0},
+{q:"44. Freeze panes means?",o:["Lock rows/columns","Delete rows","Hide columns","Merge cells"],a:0},
+{q:"45. Shortcut for new workbook?",o:["Ctrl+N","Ctrl+W","Ctrl+O","Ctrl+P"],a:0},
+{q:"46. Shortcut for open file?",o:["Ctrl+O","Ctrl+N","Ctrl+S","Ctrl+W"],a:0},
+{q:"47. Shortcut for print?",o:["Ctrl+P","Ctrl+O","Ctrl+N","Ctrl+T"],a:0},
+{q:"48. Excel formula for multiplication?",o:["*","+","/","%"],a:0},
+{q:"49. Which function gives highest value?",o:["MAX","MIN","COUNT","SUM"],a:0},
+{q:"50. Which function gives lowest value?",o:["MAX","MIN","COUNT","SUM"],a:1},
+{q:"51. Which tab is used to insert pictures in MS Word?",o:["Home","Layout","Insert","Review"],a:2},
+{q:"52. Watermark option is found in?",o:["Insert","Design","Home","View"],a:1},
+{q:"53. Page numbers can be added from?",o:["Home tab","Insert tab","Layout tab","View tab"],a:1},
+{q:"54. Shortcut for grammar and spelling check in Word?",o:["F5","F7","F2","F9"],a:1},
+{q:"55. Word count option is in?",o:["Insert tab","Home tab","Review tab","Design tab"],a:2},
+{q:"56. Which feature automatically corrects spelling mistakes?",o:["Replace","AutoCorrect","SpellCheck","Track Changes"],a:1},
+{q:"57. Indentation is used to?",o:["Delete text","Insert table","Move paragraph from margin","Add picture"],a:2},
+{q:"58. Mail Merge is used for?",o:["Saving files","Sending letters to many people","Printing images","Editing tables"],a:1},
+{q:"59. Track Changes is used for?",o:["Formatting text","Reviewing edits","Printing pages","Adding tables"],a:1},
+{q:"60. Shortcut for undo?",o:["Ctrl+Y","Ctrl+X","Ctrl+Z","Ctrl+D"],a:2},
+{q:"61. Shortcut for redo?",o:["Ctrl+Z","Ctrl+Y","Ctrl+R","Ctrl+E"],a:1},
+{q:"62. Insert hyperlink shortcut?",o:["Ctrl+H","Ctrl+L","Ctrl+K","Ctrl+J"],a:2},
+{q:"63. WordArt is used for?",o:["Tables","Charts","Decorative text","Images"],a:2},
+{q:"64. SmartArt is used for?",o:["Graphics diagrams","Text editing","Printing","Saving"],a:0},
+{q:"65. Default alignment in Word?",o:["Right","Center","Left","Justify"],a:2},
+
+{q:"66. Excel cell reference with fixed row and column?",o:["Relative reference","Absolute reference","Mixed reference","Range"],a:1},
+{q:"67. Absolute reference symbol?",o:["@","#","$","&"],a:2},
+{q:"68. Example of absolute reference?",o:["A1","$A$1","$A1","A$1"],a:1},
+{q:"69. Relative reference example?",o:["$A$1","A1","$A1","A$1"],a:1},
+{q:"70. Mixed reference example?",o:["A1","$A1","$A$1","B2"],a:1},
+
+{q:"71. IF function is used for?",o:["Logical test","Counting","Addition","Sorting"],a:0},
+{q:"72. MIN function returns?",o:["Largest value","Smallest value","Average","Sum"],a:1},
+{q:"73. MAX function returns?",o:["Smallest value","Largest value","Average","Count"],a:1},
+
+{q:"74. Shortcut to select entire column?",o:["Shift+Space","Ctrl+Space","Ctrl+A","Alt+Space"],a:1},
+{q:"75. Shortcut to select entire row?",o:["Ctrl+Space","Shift+Space","Alt+Space","Ctrl+Shift"],a:1},
+
+{q:"76. Which function counts non-empty cells?",o:["COUNT","COUNTA","SUM","AVERAGE"],a:1},
+
+{q:"77. Shortcut to insert current date?",o:["Ctrl+;","Ctrl+:","Ctrl+D","Ctrl+T"],a:0},
+{q:"78. Shortcut to insert current time?",o:["Ctrl+T","Ctrl+Shift+;","Ctrl+;","Ctrl+H"],a:1},
+
+{q:"79. Which option hides worksheet?",o:["Delete","Format","Hide","Sort"],a:2},
+
+{q:"80. Protect sheet option is used for?",o:["Delete sheet","Prevent editing","Insert sheet","Print sheet"],a:1},
+
+{q:"81. Pivot Table is used for?",o:["Data summary","Text editing","Image editing","Printing"],a:0},
+
+{q:"82. Which tab contains Pivot Table?",o:["Home","Insert","Review","View"],a:1},
+
+{q:"83. Conditional formatting highlights?",o:["Charts","Images","Important data","Tables"],a:2},
+
+{q:"84. Which Excel feature removes duplicates?",o:["Sort","Remove Duplicates","Filter","Merge"],a:1},
+
+{q:"85. Flash Fill is used for?",o:["Auto data pattern fill","Chart creation","Formula creation","Sheet protection"],a:0},
+
+{q:"86. Data validation is used to?",o:["Delete data","Restrict input","Print sheet","Create chart"],a:1},
+
+{q:"87. Shortcut to auto sum?",o:["Alt+=","Ctrl+=","Shift+=","Ctrl+Shift+="],a:0},
+
+{q:"88. Which chart type shows trends over time?",o:["Pie Chart","Line Chart","Bar Chart","Area Chart"],a:1},
+
+{q:"89. Excel formula for division?",o:["*","+","/","-"],a:2},
+
+{q:"90. Excel formula for subtraction?",o:["/","-","+","*"],a:1},
+
+{q:"91. Workbook means?",o:["Single cell","Excel file","Single sheet","Chart"],a:1},
+
+{q:"92. Worksheet means?",o:["Entire file","Chart","Sheet in workbook","Cell"],a:2},
+
+{q:"93. Name box in Excel shows?",o:["Formula","Cell address","Chart","File name"],a:1},
+
+{q:"94. Formula bar displays?",o:["Chart","Sheet name","Formula in cell","Workbook name"],a:2},
+
+{q:"95. Freeze top row option freezes?",o:["Last row","First column","First row","All rows"],a:2},
+
+{q:"96. Gridlines represent?",o:["Charts","Images","Cell boundaries","Tables"],a:2},
+
+{q:"97. Shortcut to close Excel?",o:["Ctrl+Q","Alt+F4","Ctrl+F4","Alt+Q"],a:1},
+
+{q:"98. Shortcut to move to next worksheet?",o:["Ctrl+PageUp","Ctrl+PageDown","Alt+PageDown","Shift+PageDown"],a:1},
+
+{q:"99. Shortcut to move to previous worksheet?",o:["Ctrl+PageUp","Ctrl+PageDown","Alt+PageUp","Shift+PageUp"],a:0},
+
+{q:"100. Excel is mainly used for?",o:["Video editing","Drawing","Calculations and data analysis","Music editing"],a:2}
+],
+
+
+ComputerBasics:[
+
+// ADD BASIC QUESTIONS HERE
 
 {q:"1. CPU stands for?",o:["Central Processing Unit","Central Program Unit","Computer Processing Unit","Control Processing Unit"],a:0},
 {q:"2. Which device is an input device?",o:["Keyboard","Monitor","Printer","Speaker"],a:0},
@@ -357,15 +452,36 @@ const quizData = [
 
 {q:"100. GUI stands for?",o:["Graphical User Interface","Graphic Utility Interface","General User Interface","Graphical Utility Input"],a:0}
 
+]
 
-];
+};
 
+let quizData=[];
+let totalQuestions=0;
+
+//////////////////////////
+//// LOAD QUIZ
+//////////////////////////
+
+function loadQuiz(topic){
+
+quizData=quizzes[topic];
+
+totalQuestions=quizData.length;
+
+document.getElementById("topicPage").style.display="none";
+document.getElementById("quizPage").style.display="block";
+
+document.getElementById("quizTitle").innerText=topic.toUpperCase()+" Quiz";
 
 const quizForm=document.getElementById("quizForm");
+
+quizForm.innerHTML="";
 
 quizData.forEach((data,index)=>{
 
 let qDiv=document.createElement("div");
+
 qDiv.classList.add("question");
 
 let html=`<p>${data.q}</p><div class="options">`;
@@ -373,21 +489,32 @@ let html=`<p>${data.q}</p><div class="options">`;
 data.o.forEach((opt,i)=>{
 
 html+=`
+
 <label>
+
 <input type="radio" name="q${index}" value="${i}">
+
 ${opt}
+
 </label>
+
 `;
 
 });
 
-html+=`</div>`;
+html+="</div>";
 
 qDiv.innerHTML=html;
 
 quizForm.appendChild(qDiv);
 
 });
+
+}
+
+//////////////////////////
+//// SUBMIT QUIZ
+//////////////////////////
 
 function submitQuiz(){
 
@@ -425,28 +552,41 @@ score++;
 
 });
 
-document.getElementById("result").innerHTML="Your Score: "+score+" / 100";
+document.getElementById("result").innerHTML="Your Score: "+score+" / "+quizData.length;
 
 window.scrollTo(0,document.body.scrollHeight);
 
 }
 
-const totalQuestions = quizData.length;
+//////////////////////////
+//// PROGRESS BAR
+//////////////////////////
 
 document.addEventListener("change",function(e){
 
 if(e.target.type==="radio"){
 
-let answered = document.querySelectorAll("input[type=radio]:checked").length;
+let answered=document.querySelectorAll("input[type=radio]:checked").length;
 
-let percent = (answered / totalQuestions) * 100;
+let percent=(answered/totalQuestions)*100;
 
-document.getElementById("progressBar").style.width = percent + "%";
+document.getElementById("progressBar").style.width=percent+"%";
 
 }
 
 });
-document.getElementById("result").style.animation="fadeUp 0.6s ease";
+
+function goHome(){
+
+document.getElementById("quizPage").style.display="none";
+document.getElementById("topicPage").style.display="block";
+
+document.getElementById("quizForm").innerHTML="";
+document.getElementById("result").innerHTML="";
+
+document.getElementById("progressBar").style.width="0%";
+
+}
 
 </script>
 
