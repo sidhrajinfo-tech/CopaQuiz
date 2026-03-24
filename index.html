@@ -9,6 +9,73 @@
 
 <style>
 
+.container{
+animation:fade 0.4s ease;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+.option{
+margin:10px 0;
+}
+
+.option input{
+display:none;
+}
+
+.option label{
+display:flex;
+align-items:center;
+padding:16px;
+border-radius:12px;
+border:1px solid #e5e7eb;
+cursor:pointer;
+transition:all 0.25s;
+background:#ffffff;
+font-size:16px;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* hover effect */
+
+.option label:hover{
+transform:scale(1.02);
+background:#eef2ff;
+border-color:#6366f1;
+}
+
+/* selected option */
+
+.option input:checked + label{
+background:#6366f1;
+color:rgb(31, 5, 5);
+border:2px solid #4f46e5;
+}
+
+/* SOFT RESULT COLORS */
+
+.correct{
+background:#d1fae5 !important;
+border-color:#10b981 !important;
+}
+
+.wrong{
+background:#fee2e2 !important;
+border-color:#ef4444 !important;
+}
+
+.question{
+padding:18px;
+border-radius:12px;
+border:1px solid #e5e7eb;
+margin-bottom:18px;
+background:white;
+box-shadow:0 4px 12px rgba(0,0,0,0.06);
+}
+
 body{
 font-family:Arial;
 background:linear-gradient(135deg,#667eea,#764ba2);
@@ -41,28 +108,19 @@ border:none;
 border-radius:8px;
 }
 
-.question{
-padding:15px;
-border:1px solid #ddd;
-margin-bottom:15px;
-border-radius:8px;
-}
 
-.options label{
-display:block;
-padding:6px;
-cursor:pointer;
-}
+
 
 button{
-padding:12px;
-font-size:18px;
-background:#764ba2;
+padding:14px;
+font-size:17px;
+background:linear-gradient(90deg,#6366f1,#8b5cf6);
 color:white;
 border:none;
-border-radius:8px;
+border-radius:10px;
 cursor:pointer;
 width:100%;
+font-weight:600;
 }
 
 .progress{
@@ -75,17 +133,10 @@ overflow:hidden;
 
 .progress-bar{
 height:100%;
-width:0%;
-background:#4facfe;
+background:linear-gradient(90deg,#6366f1,#22c55e);
 }
 
-.correct{
-background:#d4edda;
-}
 
-.wrong{
-background:#f8d7da;
-}
 
 </style>
 </head>
@@ -103,6 +154,18 @@ background:#f8d7da;
 <button class="topic-btn" onclick="loadQuiz('WordAndExcel')">MS Word adn MS Excel</button>
 
 <button class="topic-btn" onclick="loadQuiz('ComputerBasics')">Computer Basics</button>
+
+<button class="topic-btn" onclick="loadQuiz('PowerpointAndMysql')">Powerpoint And Mysql</button>
+
+<button class="topic-btn" onclick="loadQuiz('Javascript')">Javascript</button>
+
+<button class="topic-btn" onclick="loadQuiz('advancedexcel')">advanced excel</button>
+
+<button class="topic-btn" onclick="loadQuiz('ComputerNetwork')">Computer Network</button>
+
+<button class="topic-btn" onclick="loadQuiz('CloudCyberInternet')">Cloud/cyber security/E commerce adn internet</button>
+
+<button class="topic-btn" onclick="loadQuiz('Python')">Python</button>
 
 </div>
 
@@ -452,139 +515,1031 @@ ComputerBasics:[
 
 {q:"100. GUI stands for?",o:["Graphical User Interface","Graphic Utility Interface","General User Interface","Graphical Utility Input"],a:0}
 
+],
+
+PowerpointAndMysql:[
+{q:"1. MS PowerPoint is mainly used for?",o:["Editing images","Creating presentations","Managing databases","Writing documents"],a:1},
+{q:"2. The default file extension of PowerPoint presentation is?",o:[".pptx",".docx",".txt",".xlsx"],a:0},
+{q:"3. A single page of a PowerPoint presentation is called?",o:["Page","Slide","Frame","Sheet"],a:1},
+{q:"4. Which view is used to see all slides at once?",o:["Reading View","Slide Sorter View","Normal View","Outline View"],a:1},
+{q:"5. Shortcut key to start slideshow in PowerPoint?",o:["Ctrl+S","F5","F7","F1"],a:1},
+{q:"6. Which feature adds movement between slides?",o:["Layout","Animation","Transition","Design"],a:2},
+{q:"7. Movement applied to objects inside a slide is called?",o:["Theme","Animation","Template","Transition"],a:1},
+{q:"8. Which tab contains slide themes?",o:["Insert","Review","Home","Design"],a:3},
+{q:"9. The placeholder in PowerPoint is used for?",o:["Printing slides","Holding content","Saving slides","Deleting slides"],a:1},
+{q:"10. Which view is best for editing slides?",o:["Slide Show","Reading View","Normal View","Slide Sorter"],a:2},
+
+{q:"11. Which key moves to the next slide during slideshow?",o:["Ctrl","Alt","Spacebar","Esc"],a:2},
+{q:"12. To insert a new slide shortcut is?",o:["Ctrl+T","Ctrl+M","Ctrl+P","Ctrl+N"],a:1},
+{q:"13. Slide Master is used to?",o:["Insert charts","Create animation","Control slide design for all slides","Add notes"],a:2},
+{q:"14. Which option changes slide background?",o:["Slide Layout","Slide Sorter","Animation Pane","Format Background"],a:3},
+{q:"15. Notes added by presenter appear in?",o:["Notes Pane","Slide Pane","Task Pane","Outline Pane"],a:0},
+{q:"16. Which option inserts charts in PowerPoint?",o:["Insert Tab","Home Tab","Review Tab","Design Tab"],a:0},
+{q:"17. A ready-made style for slides is called?",o:["Layout","Animation","Template","Theme"],a:3},
+{q:"18. Which view is used for printing handouts?",o:["Slide Show","Print View","Normal View","Outline View"],a:1},
+{q:"19. The tool used to align objects is?",o:["Arrange","Transitions","Design","Review"],a:0},
+{q:"20. To duplicate a slide we use?",o:["Ctrl+C","Ctrl+D","Ctrl+V","Ctrl+X"],a:1},
+
+{q:"21. PowerPoint is part of which software suite?",o:["Adobe Suite","Google Workspace","Microsoft Office","LibreOffice"],a:2},
+{q:"22. Which option adds sound to slides?",o:["Insert Table","Insert Audio","Insert Text","Insert Image"],a:1},
+{q:"23. Which file type is used for slideshow format?",o:[".docx",".ppt",".ppsx",".xlsx"],a:2},
+{q:"24. The pane showing slide text structure is?",o:["Slide Pane","Notes Pane","Outline Pane","Task Pane"],a:2},
+{q:"25. PowerPoint was first released in?",o:["1987","1995","1980","2000"],a:0},
+
+{q:"26. MySQL is a type of?",o:["Programming Language","Relational Database Management System","Operating System","Spreadsheet"],a:1},
+{q:"27. MySQL uses which language for queries?",o:["SQL","Java","HTML","Python"],a:0},
+{q:"28. SQL stands for?",o:["Standard Question Language","Structured Query Language","Sequential Query Language","Simple Query Logic"],a:1},
+{q:"29. A collection of related data is called?",o:["Database","Table","Column","Row"],a:0},
+{q:"30. A table row is also known as?",o:["Field","Record","Column","Attribute"],a:1},
+
+{q:"31. A column in database table is called?",o:["Field","Tuple","Record","Key"],a:0},
+{q:"32. Which command retrieves data from database?",o:["DELETE","UPDATE","SELECT","INSERT"],a:2},
+{q:"33. Which command adds new data to a table?",o:["INSERT","ALTER","SELECT","DELETE"],a:0},
+{q:"34. Which command removes data from table?",o:["DELETE","INSERT","SELECT","UPDATE"],a:0},
+{q:"35. Which command modifies existing data?",o:["DROP","INSERT","UPDATE","SELECT"],a:2},
+
+{q:"36. Primary key is used to?",o:["Create tables","Delete records","Update data","Uniquely identify each record"],a:3},
+{q:"37. Which command creates a new table?",o:["NEW TABLE","CREATE TABLE","ADD TABLE","INSERT TABLE"],a:1},
+{q:"38. Which command deletes entire table?",o:["DROP TABLE","REMOVE TABLE","DELETE TABLE","CLEAR TABLE"],a:0},
+{q:"39. Which clause filters records?",o:["GROUP BY","WHERE","ORDER BY","SELECT"],a:1},
+{q:"40. Which clause sorts results?",o:["ORDER BY","GROUP BY","WHERE","SELECT"],a:0},
+
+{q:"41. Which clause groups records?",o:["GROUP BY","WHERE","ORDER BY","HAVING"],a:0},
+{q:"42. COUNT() function is used to?",o:["Add values","Delete records","Count rows","Sort data"],a:2},
+{q:"43. Which function finds average?",o:["AVG()","SUM()","COUNT()","MAX()"],a:0},
+{q:"44. SUM() function does?",o:["Adds numeric values","Counts rows","Finds maximum","Finds average"],a:0},
+{q:"45. Which constraint prevents duplicate values?",o:["NOT NULL","DEFAULT","UNIQUE","CHECK"],a:2},
+
+{q:"46. NOT NULL constraint means?",o:["Column optional","Column must be text","Column cannot be empty","Column must be number"],a:2},
+{q:"47. AUTO_INCREMENT is used to?",o:["Generate automatic numbers","Delete rows","Filter records","Sort data"],a:0},
+{q:"48. Foreign key is used for?",o:["Sorting tables","Grouping tables","Linking tables","Deleting tables"],a:2},
+{q:"49. Which command changes table structure?",o:["ALTER TABLE","UPDATE TABLE","MODIFY TABLE","CHANGE TABLE"],a:0},
+{q:"50. Which command shows all tables in database?",o:["LIST TABLES","SHOW TABLES","VIEW TABLES","DISPLAY TABLES"],a:1},
+
+{q:"51. MySQL is developed by?",o:["Microsoft","Oracle Corporation","IBM","Google"],a:1},
+{q:"52. Which statement removes all records but keeps table?",o:["DELETE TABLE","TRUNCATE","DROP","REMOVE"],a:1},
+{q:"53. Which keyword removes duplicate results?",o:["DISTINCT","UNIQUE","FILTER","ORDER"],a:0},
+{q:"54. LIMIT clause is used to?",o:["Sort rows","Restrict number of rows","Delete rows","Group rows"],a:1},
+{q:"55. Which symbol is wildcard in LIKE clause?",o:["#","%","&","$"],a:1},
+
+{q:"56. _ wildcard represents?",o:["Single character","Multiple characters","Numbers only","No character"],a:0},
+{q:"57. Which command creates database?",o:["CREATE DATABASE","NEW DATABASE","MAKE DATABASE","ADD DATABASE"],a:0},
+{q:"58. Which command deletes database?",o:["DROP DATABASE","REMOVE DATABASE","DELETE DATABASE","CLEAR DATABASE"],a:0},
+{q:"59. Which command selects a database?",o:["USE","SELECT","OPEN","CHOOSE"],a:0},
+{q:"60. Index in MySQL is used to?",o:["Insert data","Update data","Speed up queries","Delete data"],a:2},
+
+{q:"61. JOIN is used to?",o:["Combine tables","Delete tables","Create tables","Sort tables"],a:0},
+{q:"62. INNER JOIN returns?",o:["Matching records","All records","Left records","Right records"],a:0},
+{q:"63. LEFT JOIN returns?",o:["All left table records","Only matched records","Only right table records","No records"],a:0},
+{q:"64. RIGHT JOIN returns?",o:["Only matched records","All right table records","Only left records","No records"],a:1},
+{q:"65. Which clause filters grouped data?",o:["HAVING","WHERE","GROUP","ORDER"],a:0},
+
+{q:"66. DEFAULT constraint provides?",o:["Default value","Unique value","Null value","Primary value"],a:0},
+{q:"67. Which command renames table?",o:["RENAME TABLE","ALTER NAME","MODIFY TABLE","CHANGE TABLE"],a:0},
+{q:"68. VARCHAR stores?",o:["Binary data","Variable length text","Fixed numbers","Images"],a:1},
+{q:"69. INT datatype stores?",o:["Text","Integer numbers","Images","Dates"],a:1},
+{q:"70. DATE datatype stores?",o:["Numbers","Text","Date values","Images"],a:2},
+
+{q:"71. Which command shows database list?",o:["SHOW DATABASES","LIST DATABASES","VIEW DATABASES","DISPLAY DATABASES"],a:0},
+{q:"72. Which operator checks NULL value?",o:["IS NULL","= NULL","== NULL","LIKE NULL"],a:0},
+{q:"73. Which clause searches pattern?",o:["LIKE","WHERE","ORDER","GROUP"],a:0},
+{q:"74. AND operator does?",o:["Both conditions true","Either condition true","None true","Opposite"],a:0},
+{q:"75. OR operator means?",o:["Any condition true","Both true","None true","Always false"],a:0},
+
+{q:"76. NOT operator means?",o:["Negation","Addition","Sorting","Grouping"],a:0},
+{q:"77. Which statement backs up database?",o:["mysqldump","backup","copy","save"],a:0},
+{q:"78. MySQL default port is?",o:["8080","3306","1433","1521"],a:1},
+{q:"79. phpMyAdmin is used for?",o:["Managing MySQL through web","Creating slides","Editing images","Writing documents"],a:0},
+{q:"80. Which engine is default in MySQL?",o:["MyISAM","InnoDB","Memory","CSV"],a:1},
+
+{q:"81. Transaction command to save changes permanently?",o:["ROLLBACK","SAVEPOINT","COMMIT","UNDO"],a:2},
+{q:"82. Command to undo transaction?",o:["ROLLBACK","COMMIT","SAVE","DELETE"],a:0},
+{q:"83. SAVEPOINT is used to?",o:["Create restore point","Delete data","Insert data","Sort data"],a:0},
+{q:"84. ACID property ensures?",o:["Database reliability","Speed","Size","Storage"],a:0},
+{q:"85. Which clause selects unique rows?",o:["DISTINCT","ORDER","GROUP","LIMIT"],a:0},
+
+{q:"86. Database normalization removes?",o:["Indexes","Redundancy","Tables","Constraints"],a:1},
+{q:"87. First Normal Form removes?",o:["Repeating groups","Duplicates","Indexes","Keys"],a:0},
+{q:"88. Primary key cannot be?",o:["NULL","Unique","Indexed","Numeric"],a:0},
+{q:"89. Foreign key references?",o:["Primary key of another table","Same table","Text field","Image"],a:0},
+{q:"90. Composite key is?",o:["Multiple columns key","Single column key","Numeric key","Auto key"],a:0},
+
+{q:"91. View in MySQL is?",o:["Virtual table","Real table","Index table","Temporary table"],a:0},
+{q:"92. Stored procedure is?",o:["Precompiled SQL code","Table","Database","Index"],a:0},
+{q:"93. Trigger executes?",o:["Automatically on event","Manually","Weekly","Yearly"],a:0},
+{q:"94. Event scheduler runs?",o:["Scheduled tasks","Manual queries","Backups","Deletes"],a:0},
+{q:"95. Temporary table exists?",o:["Session duration","Forever","Database life","Server life"],a:0},
+
+{q:"96. UNION operator does?",o:["Combines result sets","Deletes rows","Sorts rows","Groups rows"],a:0},
+{q:"97. UNION removes?",o:["Duplicate rows","Columns","Tables","Indexes"],a:0},
+{q:"98. CASE statement used for?",o:["Conditional logic","Sorting","Grouping","Deleting"],a:0},
+{q:"99. Metadata means?",o:["Data about data","Large data","Deleted data","Hidden data"],a:0},
+{q:"100. MySQL is mainly used for?",o:["Managing databases","Creating slides","Editing photos","Writing documents"],a:0}
+],
+
+HtmlandCss:[
+{q:"1. HTML stands for?",o:["Hyperlinks and Text Markup Language","Home Tool Markup Language","Hyper Text Markup Language","Hyper Tool Multi Language"],a:2},
+{q:"2. HTML files use which extension?",o:[".css",".js",".html",".xml"],a:2},
+{q:"3. Who invented HTML?",o:["Dennis Ritchie","Tim Berners-Lee","James Gosling","Bjarne Stroustrup"],a:1},
+{q:"4. The root tag of HTML document is?",o:["<body>","<html>","<head>","<title>"],a:1},
+{q:"5. Which tag creates hyperlink?",o:["<link>","<href>","<a>","<url>"],a:2},
+
+{q:"6. Which attribute specifies link destination?",o:["href","src","alt","title"],a:0},
+{q:"7. Which tag inserts image?",o:["<img>","<picture>","<image>","<photo>"],a:0},
+{q:"8. Attribute for alternate text in image?",o:["src","alt","title","name"],a:1},
+{q:"9. Which tag creates paragraph?",o:["<para>","<p>","<text>","<paragraph>"],a:1},
+{q:"10. Line break tag?",o:["<lb>","<break>","<br>","<line>"],a:2},
+
+{q:"11. Horizontal line tag?",o:["<line>","<hr>","<break>","<rule>"],a:1},
+{q:"12. Largest heading tag?",o:["<h6>","<h1>","<h3>","<h4>"],a:1},
+{q:"13. Smallest heading tag?",o:["<h1>","<h2>","<h5>","<h6>"],a:3},
+{q:"14. Ordered list tag?",o:["<ul>","<ol>","<li>","<list>"],a:1},
+{q:"15. Unordered list tag?",o:["<ul>","<ol>","<li>","<list>"],a:0},
+
+{q:"16. List item tag?",o:["<li>","<item>","<list>","<ul>"],a:0},
+{q:"17. Table row tag?",o:["<td>","<tr>","<th>","<row>"],a:1},
+{q:"18. Table data tag?",o:["<td>","<tr>","<th>","<data>"],a:0},
+{q:"19. Table header tag?",o:["<td>","<tr>","<th>","<head>"],a:2},
+{q:"20. HTML comment syntax?",o:["// comment","<!-- comment -->","# comment","/* comment */"],a:1},
+
+{q:"21. HTML5 semantic tag?",o:["<article>","<font>","<big>","<center>"],a:0},
+{q:"22. Navigation section tag?",o:["<menu>","<nav>","<navigate>","<link>"],a:1},
+{q:"23. Footer tag?",o:["<bottom>","<end>","<footer>","<foot>"],a:2},
+{q:"24. Header tag?",o:["<header>","<top>","<head>","<heading>"],a:0},
+{q:"25. HTML form tag?",o:["<form>","<input>","<button>","<select>"],a:0},
+
+{q:"26. Input field tag?",o:["<field>","<input>","<textbox>","<type>"],a:1},
+{q:"27. Dropdown list tag?",o:["<option>","<list>","<select>","<choice>"],a:2},
+{q:"28. Dropdown option tag?",o:["<option>","<select>","<item>","<choice>"],a:0},
+{q:"29. Button tag?",o:["<button>","<click>","<submit>","<btn>"],a:0},
+{q:"30. Video embed tag?",o:["<video>","<media>","<movie>","<play>"],a:0},
+
+{q:"31. Audio embed tag?",o:["<music>","<audio>","<sound>","<mp3>"],a:1},
+{q:"32. HTML attribute example?",o:["href","src","alt","All of these"],a:3},
+{q:"33. HTML is which type of language?",o:["Programming language","Markup language","Database language","Styling language"],a:1},
+{q:"34. CSS stands for?",o:["Computer Style Sheets","Creative Style System","Cascading Style Sheets","Colorful Style Sheets"],a:2},
+{q:"35. CSS is used for?",o:["Styling web pages","Database design","Server management","Programming logic"],a:0},
+
+{q:"36. CSS file extension?",o:[".css",".style",".design",".html"],a:0},
+{q:"37. Inline CSS is written in?",o:["class attribute","style attribute","id attribute","css attribute"],a:1},
+{q:"38. Internal CSS is written inside?",o:["<style>","<css>","<design>","<script>"],a:0},
+{q:"39. External CSS linked by?",o:["<link>","<css>","<style>","<script>"],a:0},
+{q:"40. CSS property for text color?",o:["font-color","color","text-color","bgcolor"],a:1},
+
+{q:"41. CSS property for background color?",o:["background","background-color","bgcolor","color-bg"],a:1},
+{q:"42. Font size property?",o:["font-size","text-size","size","font-style"],a:0},
+{q:"43. Font family property?",o:["font-family","font-style","text-font","font-name"],a:0},
+{q:"44. Text alignment property?",o:["align-text","text-align","text-position","align"],a:1},
+{q:"45. Bold text property?",o:["font-weight","text-bold","bold-style","font-bold"],a:0},
+
+{q:"46. Italic text property?",o:["font-style","italic","text-style","font-italic"],a:0},
+{q:"47. Line spacing property?",o:["line-height","letter-spacing","word-spacing","text-spacing"],a:0},
+{q:"48. Letter spacing property?",o:["line-spacing","letter-spacing","word-spacing","font-spacing"],a:1},
+{q:"49. Word spacing property?",o:["letter-spacing","word-spacing","text-spacing","spacing"],a:1},
+{q:"50. Width property?",o:["width","size","length","dimension"],a:0},
+
+{q:"51. Height property?",o:["size","height","length","dimension"],a:1},
+{q:"52. Border property?",o:["border","outline","frame","edge"],a:0},
+{q:"53. Margin property?",o:["margin","padding","spacing","border-space"],a:0},
+{q:"54. Inner spacing property?",o:["margin","padding","gap","space"],a:1},
+{q:"55. Display block value?",o:["block","inline","flex","grid"],a:0},
+
+{q:"56. Display inline value?",o:["block","inline","flex","grid"],a:1},
+{q:"57. Flex layout property?",o:["display:flex","flex-container","layout-flex","flexbox"],a:0},
+{q:"58. Grid layout property?",o:["display:grid","grid-layout","grid-container","layout-grid"],a:0},
+{q:"59. CSS id selector symbol?",o:[".","#","*","@"],a:1},
+{q:"60. CSS class selector symbol?",o:["#",".","*","@"],a:1},
+
+{q:"61. Universal selector?",o:["#",".","*","@"],a:2},
+{q:"62. Hide element property?",o:["display:none","visibility:hidden","opacity:0","All of these"],a:3},
+{q:"63. Transparency property?",o:["opacity","alpha","transparent","visibility"],a:0},
+{q:"64. Fixed position property?",o:["fixed","absolute","relative","static"],a:0},
+{q:"65. Relative position property?",o:["absolute","fixed","relative","static"],a:2},
+
+{q:"66. Stacking order property?",o:["z-index","order","layer","stack"],a:0},
+{q:"67. Rounded corners property?",o:["border-radius","corner-radius","round","curve"],a:0},
+{q:"68. Background image property?",o:["bg-image","background-image","image-bg","bgpicture"],a:1},
+{q:"69. Background repeat property?",o:["repeat-bg","background-repeat","image-repeat","bg-repeat"],a:1},
+{q:"70. Background position property?",o:["background-position","bg-position","image-position","pos-bg"],a:0},
+
+{q:"71. Text decoration property?",o:["text-decoration","font-decoration","decorate","text-style"],a:0},
+{q:"72. Uppercase text property?",o:["text-transform","text-case","uppercase","font-transform"],a:0},
+{q:"73. Overflow property?",o:["overflow","clip","scroll","hidden"],a:0},
+{q:"74. Pseudo class example?",o:[":hover",".hover","#hover","hover()"],a:0},
+{q:"75. Pseudo element example?",o:["::before","::hover",".before","#before"],a:0},
+
+{q:"76. Cursor style property?",o:["cursor","pointer","mouse","icon"],a:0},
+{q:"77. Visibility property?",o:["visibility","display","opacity","show"],a:0},
+{q:"78. Responsive design technique?",o:["Media Queries","Grid","Flexbox","Bootstrap"],a:0},
+{q:"79. Animation property?",o:["animation","motion","animate","move"],a:0},
+{q:"80. Transition property?",o:["transform","transition","motion","move"],a:1},
+
+{q:"81. Transform property?",o:["transform","rotate","scale","translate"],a:0},
+{q:"82. Rotate function?",o:["rotate()","spin()","turn()","circle()"],a:0},
+{q:"83. Scale function?",o:["scale()","resize()","zoom()","expand()"],a:0},
+{q:"84. Translate function?",o:["move()","translate()","shift()","slide()"],a:1},
+{q:"85. CSS pixel unit?",o:["px","%","em","rem"],a:0},
+
+{q:"86. Percentage unit?",o:["px","%","em","rem"],a:1},
+{q:"87. Relative font unit?",o:["px","em","cm","pt"],a:1},
+{q:"88. Root font unit?",o:["px","rem","em","cm"],a:1},
+{q:"89. Popular CSS framework?",o:["Bootstrap","Angular","Node","React"],a:0},
+{q:"90. CSS used with HTML for?",o:["Design","Database","Server","Security"],a:0},
+
+{q:"91. CSS rule structure contains?",o:["Selector","Property","Value","All of these"],a:3},
+{q:"92. Inline style priority?",o:["Highest","Lowest","Medium","None"],a:0},
+{q:"93. External CSS advantage?",o:["Reusable","Fast","Separate design","All of these"],a:3},
+{q:"94. CSS comment syntax?",o:["// comment","/* comment */","# comment","<!-- comment -->"],a:1},
+{q:"95. HTML + CSS together used for?",o:["Web development","Database","Networking","Operating system"],a:0},
+
+{q:"96. CSS box model includes?",o:["Margin","Padding","Border","All of these"],a:3},
+{q:"97. CSS float property used for?",o:["Positioning elements","Animation","Forms","Tables"],a:0},
+{q:"98. CSS clear property used for?",o:["Clear float","Delete content","Reset style","Hide element"],a:0},
+{q:"99. CSS flexbox mainly used for?",o:["Layout","Database","Animation","Forms"],a:0},
+{q:"100. HTML + CSS mainly create?",o:["Web pages","Databases","Mobile apps","Operating systems"],a:0}
+],
+
+Javascript:[
+{q:"1. JavaScript is primarily used for?",o:["Programming database","Adding interactivity to web pages","Styling web pages","Managing servers"],a:1},
+{q:"2. JavaScript was originally developed by?",o:["Bill Gates","Brendan Eich","Dennis Ritchie","James Gosling"],a:1},
+{q:"3. JavaScript was created in which year?",o:["2000","1999","1995","1989"],a:2},
+{q:"4. Which HTML tag is used to include JavaScript?",o:["<script>","<js>","<javascript>","<code>"],a:0},
+{q:"5. Which company developed JavaScript?",o:["Microsoft","Netscape","IBM","Google"],a:1},
+
+{q:"6. JavaScript file extension is?",o:[".json",".js",".java",".jsx"],a:1},
+{q:"7. Which keyword declares a variable in modern JavaScript?",o:["var","define","let","Both var and let"],a:3},
+{q:"8. Which keyword creates block-scoped variable?",o:["var","let","const","define"],a:1},
+{q:"9. Which keyword declares constant variable?",o:["const","static","var","let"],a:0},
+{q:"10. Which method prints output in console?",o:["echo()","display()","console.log()","print()"],a:2},
+
+{q:"11. Which function displays alert box?",o:["alert()","msg()","confirm()","prompt()"],a:0},
+{q:"12. Which function takes user input in dialog box?",o:["confirm()","prompt()","alert()","input()"],a:1},
+{q:"13. JavaScript is which type of language?",o:["Compiled","Machine","Interpreted","Assembly"],a:2},
+{q:"14. Which operator is used for assignment?",o:["=","===","!=","=="],a:0},
+{q:"15. Which operator checks equality with type?",o:["!=","===","=","=="],a:1},
+
+{q:"16. Which data type represents true/false?",o:["Boolean","Number","Object","String"],a:0},
+{q:"17. Which data type stores text?",o:["Object","String","Boolean","Number"],a:1},
+{q:"18. Which keyword defines function?",o:["define","method","function","func"],a:2},
+{q:"19. Which statement is used for condition?",o:["switch","for","if","loop"],a:2},
+{q:"20. Which statement checks multiple conditions?",o:["if","switch","loop","break"],a:1},
+
+{q:"21. Which loop repeats fixed number of times?",o:["switch","for","while","if"],a:1},
+{q:"22. Which loop runs while condition true?",o:["if","while","switch","for"],a:1},
+{q:"23. Which loop runs at least once?",o:["for","do...while","while","loop"],a:1},
+{q:"24. Which keyword stops loop?",o:["exit","halt","break","stop"],a:2},
+{q:"25. Which keyword skips iteration?",o:["continue","break","pass","skip"],a:0},
+
+{q:"26. Which method joins array elements?",o:["merge()","concat()","join()","add()"],a:2},
+{q:"27. Which method adds element to end of array?",o:["push()","pop()","shift()","unshift()"],a:0},
+{q:"28. Which method removes last array element?",o:["shift()","slice()","push()","pop()"],a:3},
+{q:"29. Which method removes first element?",o:["shift()","splice()","pop()","push()"],a:0},
+{q:"30. Which method adds element at beginning?",o:["push()","splice()","unshift()","shift()"],a:2},
+
+{q:"31. Which object represents browser window?",o:["browser","window","screen","document"],a:1},
+{q:"32. Which object represents HTML document?",o:["body","window","document","html"],a:2},
+{q:"33. DOM stands for?",o:["Document Object Model","Data Object Model","Data Oriented Method","Document Oriented Model"],a:0},
+{q:"34. Which method selects element by ID?",o:["querySelectorAll()","selectId()","getElementById()","getElementsByClass()"],a:2},
+{q:"35. Which method selects elements by class?",o:["queryID()","classSelect()","getElementById()","getElementsByClassName()"],a:3},
+
+{q:"36. Which method selects using CSS selector?",o:["selectCSS()","getSelector()","querySelector()","getElement()"],a:2},
+{q:"37. Which event occurs when user clicks?",o:["onhover","onclick","onpress","onchange"],a:1},
+{q:"38. Which event occurs when page loads?",o:["onstart","onload","onready","onopen"],a:1},
+{q:"39. Which event occurs when mouse moves?",o:["onclick","onmouseover","onfocus","onchange"],a:1},
+{q:"40. Which event occurs when input changes?",o:["onpress","onchange","onmove","onhover"],a:1},
+
+{q:"41. JSON stands for?",o:["Java Source Object Network","JavaScript Object Notation","JavaScript Oriented Node","Java Standard Object Name"],a:1},
+{q:"42. Which method converts object to JSON string?",o:["JSON.parse()","JSON.stringify()","JSON.convert()","JSON.object()"],a:1},
+{q:"43. Which method converts JSON string to object?",o:["JSON.stringify()","JSON.object()","JSON.parse()","JSON.create()"],a:2},
+{q:"44. Which symbol is used for single line comment?",o:["/*","#","//","<!--"],a:2},
+{q:"45. Which symbol starts multi line comment?",o:["/*","//","#","<!--"],a:0},
+
+{q:"46. Which keyword creates class?",o:["object","class","define","function"],a:1},
+{q:"47. Which keyword inherits class?",o:["super","extends","inherits","prototype"],a:1},
+{q:"48. Which keyword calls parent constructor?",o:["this","super","base","call"],a:1},
+{q:"49. Which keyword refers current object?",o:["self","this","current","me"],a:1},
+{q:"50. Which operator creates object instance?",o:["object","create","new","make"],a:2},
+
+{q:"51. Which keyword handles error?",o:["error","handle","check","try"],a:3},
+{q:"52. Which keyword catches error?",o:["handle","catch","detect","fix"],a:1},
+{q:"53. Which keyword executes always?",o:["complete","always","finally","end"],a:2},
+{q:"54. Which statement throws error?",o:["error","raise","throw","fail"],a:2},
+{q:"55. Which function delays execution?",o:["pause()","wait()","setTimeout()","delay()"],a:2},
+
+{q:"56. Which function repeats execution?",o:["repeat()","cycle()","setInterval()","loop()"],a:2},
+{q:"57. Which keyword defines asynchronous function?",o:["await","async","promise","delay"],a:1},
+{q:"58. Which keyword waits promise result?",o:["await","async","promise","wait"],a:0},
+{q:"59. Which object handles asynchronous operation?",o:["Async","Promise","Wait","Callback"],a:1},
+{q:"60. Which method handles promise success?",o:["done()","then()","success()","catch()"],a:1},
+
+{q:"61. Which method handles promise error?",o:["fail()","catch()","error()","then()"],a:1},
+{q:"62. Which method runs regardless promise result?",o:["complete()","always()","finally()","done()"],a:2},
+{q:"63. Which symbol defines arrow function?",o:["->","=>","==>","-->"],a:1},
+{q:"64. Which keyword imports module?",o:["require","import","include","load"],a:1},
+{q:"65. Which keyword exports module?",o:["share","export","provide","send"],a:1},
+
+{q:"66. Which method converts string to integer?",o:["parseFloat()","parseInt()","Number()","convertInt()"],a:1},
+{q:"67. Which method converts string to float?",o:["parseInt()","Number()","parseFloat()","convertFloat()"],a:2},
+{q:"68. Which operator concatenates strings?",o:["*","+","&","/"],a:1},
+{q:"69. Which function checks number?",o:["isNumber()","checkNum()","isNaN()","numCheck()"],a:2},
+{q:"70. Which operator checks type?",o:["instance","typeof","type","checktype"],a:1},
+
+{q:"71. Which operator checks instance?",o:["typeof","instanceof","objectof","check"],a:1},
+{q:"72. Which method converts array to string?",o:["join()","toString()","concat()","stringify()"],a:1},
+{q:"73. Which array method returns length?",o:["length","size()","count()","total()"],a:0},
+{q:"74. Which method sorts array?",o:["arrange()","order()","sort()","set()"],a:2},
+{q:"75. Which method reverses array?",o:["invert()","swap()","reverse()","flip()"],a:2},
+
+{q:"76. Which method removes part of array?",o:["splice()","slice()","cut()","remove()"],a:0},
+{q:"77. Which method copies part of array?",o:["splice()","slice()","copy()","clone()"],a:1},
+{q:"78. Which method merges arrays?",o:["merge()","join()","combine()","concat()"],a:3},
+{q:"79. Which function executes after page loaded?",o:["window.onload","init()","document.ready","page.start"],a:0},
+{q:"80. Which method writes HTML content?",o:["display()","document.write()","console.write()","printHTML()"],a:1},
+
+{q:"81. Which property changes HTML text?",o:["content","innerHTML","htmlText","textValue"],a:1},
+{q:"82. Which property changes text only?",o:["innerText","innerHTML","textHTML","valueText"],a:0},
+{q:"83. Which property reads input value?",o:["data","value","text","input"],a:1},
+{q:"84. Which property changes style?",o:["design","format","style","css"],a:2},
+{q:"85. Which event occurs when key pressed?",o:["onchange","onkeydown","onclick","onload"],a:1},
+
+{q:"86. Which event occurs when mouse leaves element?",o:["onmouseout","onmouseover","onclick","onchange"],a:0},
+{q:"87. Which event occurs when mouse enters element?",o:["onclick","onmouseover","onmouseout","onchange"],a:1},
+{q:"88. Which function converts number to string?",o:["parseInt()","parseFloat()","Number()","toString()"],a:3},
+{q:"89. Which method checks array?",o:["typeof","checkArray()","Array.isArray()","isArray()"],a:2},
+{q:"90. Which method finds element index?",o:["search()","locate()","indexOf()","find()"],a:2},
+
+{q:"91. Which method finds element conditionally?",o:["indexOf()","find()","search()","locate()"],a:1},
+{q:"92. Which method loops array?",o:["repeat()","forEach()","loop()","cycle()"],a:1},
+{q:"93. Which method maps array values?",o:["filter()","map()","reduce()","convert()"],a:1},
+{q:"94. Which method filters array?",o:["reduce()","filter()","map()","slice()"],a:1},
+{q:"95. Which method reduces array to value?",o:["slice()","reduce()","filter()","map()"],a:1},
+
+{q:"96. Which API stores data in browser?",o:["cookies","sessionStorage","localStorage","Both A and B"],a:3},
+{q:"97. Which storage clears after session?",o:["localStorage","sessionStorage","memory","database"],a:1},
+{q:"98. Which storage persists permanently?",o:["cache","localStorage","memory","sessionStorage"],a:1},
+{q:"99. JavaScript runs mainly in?",o:["Database","Compiler","Browser","Server"],a:2},
+{q:"100. JavaScript is mainly used for?",o:["Database management","Web interactivity","Image editing","Operating system"],a:1}
+],
+
+advancedexcel:[
+{q:"1. Which Excel feature allows you to summarize large datasets quickly?",o:["Charts","Pivot Table","Conditional Formatting","Data Validation"],a:1},
+{q:"2. Which function is used to look up a value vertically in a table?",o:["HLOOKUP","INDEX","VLOOKUP","MATCH"],a:2},
+{q:"3. Which function searches horizontally in a table?",o:["VLOOKUP","HLOOKUP","MATCH","OFFSET"],a:1},
+{q:"4. Which function returns the position of a value in a range?",o:["MATCH","INDEX","LOOKUP","FIND"],a:0},
+{q:"5. Which function returns a value from a specific position in a table?",o:["INDEX","MATCH","OFFSET","VLOOKUP"],a:0},
+
+{q:"6. Which Excel tool highlights cells based on conditions?",o:["Data Validation","Pivot Table","Conditional Formatting","Goal Seek"],a:2},
+{q:"7. Which feature restricts type of data entered in a cell?",o:["Conditional Formatting","Data Validation","Filter","Sort"],a:1},
+{q:"8. Which function adds numbers based on condition?",o:["SUMIF","SUM","COUNTIF","AVERAGE"],a:0},
+{q:"9. Which function counts cells based on condition?",o:["COUNT","COUNTIF","COUNTA","SUMIF"],a:1},
+{q:"10. Which function averages values based on condition?",o:["AVERAGE","AVERAGEIF","SUMIF","COUNTIF"],a:1},
+
+{q:"11. Which tool removes duplicate values?",o:["Remove Duplicates","Filter","Sort","Group"],a:0},
+{q:"12. Which feature sorts data alphabetically or numerically?",o:["Filter","Sort","Pivot Table","Group"],a:1},
+{q:"13. Which feature displays only selected data rows?",o:["Filter","Sort","Validation","Freeze"],a:0},
+{q:"14. Which function combines text from multiple cells?",o:["CONCAT","SUM","TEXTJOIN","Both CONCAT and TEXTJOIN"],a:3},
+{q:"15. Which function returns length of text?",o:["LEN","LEFT","RIGHT","MID"],a:0},
+
+{q:"16. Which function extracts characters from left?",o:["LEFT","RIGHT","MID","LEN"],a:0},
+{q:"17. Which function extracts characters from right?",o:["RIGHT","LEFT","MID","LEN"],a:0},
+{q:"18. Which function extracts text from middle?",o:["LEFT","MID","RIGHT","LEN"],a:1},
+{q:"19. Which function converts text to uppercase?",o:["UPPER","LOWER","PROPER","TEXT"],a:0},
+{q:"20. Which function converts text to lowercase?",o:["LOWER","UPPER","PROPER","TEXT"],a:0},
+
+{q:"21. Which function capitalizes first letter of words?",o:["UPPER","LOWER","PROPER","TRIM"],a:2},
+{q:"22. Which function removes extra spaces?",o:["TRIM","CLEAN","LEFT","LEN"],a:0},
+{q:"23. Which function finds text within text?",o:["FIND","SEARCH","LOOKUP","MATCH"],a:1},
+{q:"24. Which function replaces text?",o:["REPLACE","SUBSTITUTE","CHANGE","MODIFY"],a:1},
+{q:"25. Which function joins text with delimiter?",o:["TEXTJOIN","CONCAT","JOIN","MERGE"],a:0},
+
+{q:"26. Which tool finds optimal value for formula?",o:["Solver","Goal Seek","Scenario Manager","Pivot"],a:1},
+{q:"27. Which Excel feature performs complex optimization?",o:["Goal Seek","Solver","Sort","Filter"],a:1},
+{q:"28. Which tool analyzes different scenarios?",o:["Scenario Manager","Pivot Table","Filter","Sort"],a:0},
+{q:"29. Which function returns current date?",o:["TODAY()","DATE()","NOW()","TIME()"],a:0},
+{q:"30. Which function returns current date and time?",o:["TODAY()","DATE()","NOW()","TIME()"],a:2},
+
+{q:"31. Which function extracts day from date?",o:["DAY()","MONTH()","YEAR()","DATE()"],a:0},
+{q:"32. Which function extracts month from date?",o:["MONTH()","DAY()","YEAR()","DATE()"],a:0},
+{q:"33. Which function extracts year from date?",o:["YEAR()","MONTH()","DAY()","DATE()"],a:0},
+{q:"34. Which function combines year, month and day into date?",o:["DATE()","NOW()","TODAY()","TIME()"],a:0},
+{q:"35. Which chart shows trends over time?",o:["Pie Chart","Line Chart","Bar Chart","Area Chart"],a:1},
+
+{q:"36. Which chart is best for percentage distribution?",o:["Pie Chart","Line Chart","Column Chart","Bar Chart"],a:0},
+{q:"37. Which chart compares values across categories?",o:["Column Chart","Pie Chart","Line Chart","Area Chart"],a:0},
+{q:"38. Which feature locks rows or columns while scrolling?",o:["Freeze Panes","Split","Group","Lock"],a:0},
+{q:"39. Which feature groups rows or columns?",o:["Group","Filter","Sort","Split"],a:0},
+{q:"40. Which feature splits worksheet into panes?",o:["Split","Freeze","Group","Merge"],a:0},
+
+{q:"41. Which function checks logical condition?",o:["IF","AND","OR","NOT"],a:0},
+{q:"42. Which function returns TRUE if all conditions true?",o:["AND","OR","IF","NOT"],a:0},
+{q:"43. Which function returns TRUE if any condition true?",o:["OR","AND","IF","NOT"],a:0},
+{q:"44. Which function reverses logical value?",o:["NOT","IF","AND","OR"],a:0},
+{q:"45. Which function handles multiple conditions?",o:["IFS","IF","SWITCH","CASE"],a:0},
+
+{q:"46. Which function rounds number?",o:["ROUND","CEILING","FLOOR","INT"],a:0},
+{q:"47. Which function rounds up number?",o:["CEILING","ROUND","FLOOR","INT"],a:0},
+{q:"48. Which function rounds down number?",o:["FLOOR","ROUND","CEILING","INT"],a:0},
+{q:"49. Which function removes decimal part?",o:["INT","ROUND","FLOOR","CEILING"],a:0},
+{q:"50. Which function returns remainder?",o:["MOD","ROUND","INT","ABS"],a:0},
+
+{q:"51. Which function returns absolute value?",o:["ABS","MOD","ROUND","INT"],a:0},
+{q:"52. Which function generates random number?",o:["RAND()","RANDOM()","NUMBER()","GEN()"],a:0},
+{q:"53. Which function generates random integer between numbers?",o:["RANDBETWEEN()","RAND()","INT()","MOD()"],a:0},
+{q:"54. Which Excel feature automates repetitive tasks?",o:["Macro","Filter","Sort","Pivot"],a:0},
+{q:"55. Which language is used for Excel macros?",o:["VBA","Java","Python","C++"],a:0},
+
+{q:"56. Which shortcut opens macro dialog?",o:["Alt+F8","Ctrl+M","Alt+M","Ctrl+F8"],a:0},
+{q:"57. Which feature protects worksheet?",o:["Protect Sheet","Lock Cell","Hide Sheet","Freeze"],a:0},
+{q:"58. Which feature protects entire workbook?",o:["Protect Workbook","Protect Sheet","Encrypt","Lock"],a:0},
+{q:"59. Which feature hides formulas?",o:["Format Cells","Protect Sheet","Hide Formula","Formula Lock"],a:2},
+{q:"60. Which feature tracks changes?",o:["Track Changes","Audit","Review","Compare"],a:0},
+
+{q:"61. Which tool audits formulas?",o:["Formula Auditing","Check Errors","Trace","Inspect"],a:0},
+{q:"62. Which option shows precedent cells?",o:["Trace Precedents","Trace Dependents","Audit","Check"],a:0},
+{q:"63. Which option shows dependent cells?",o:["Trace Dependents","Trace Precedents","Audit","Check"],a:0},
+{q:"64. Which function returns column number?",o:["COLUMN()","ROW()","INDEX()","CELL()"],a:0},
+{q:"65. Which function returns row number?",o:["ROW()","COLUMN()","INDEX()","CELL()"],a:0},
+
+{q:"66. Which function returns cell information?",o:["CELL()","INFO()","DATA()","INDEX()"],a:0},
+{q:"67. Which feature formats data as table?",o:["Format as Table","Pivot","Sort","Filter"],a:0},
+{q:"68. Which feature summarizes table data visually?",o:["Pivot Chart","Line Chart","Bar Chart","Pie Chart"],a:0},
+{q:"69. Which function converts number to text format?",o:["TEXT()","VALUE()","NUMBERVALUE()","FORMAT()"],a:0},
+{q:"70. Which function converts text to number?",o:["VALUE()","TEXT()","NUMBERVALUE()","FORMAT()"],a:0},
+
+{q:"71. Which feature imports external data?",o:["Power Query","Pivot","Solver","Scenario"],a:0},
+{q:"72. Which Excel add-in manages big data models?",o:["Power Pivot","Pivot Table","Solver","Goal Seek"],a:0},
+{q:"73. Which feature creates dashboards?",o:["Charts","Pivot Tables","Slicers","All of these"],a:3},
+{q:"74. Which tool filters pivot tables interactively?",o:["Slicer","Filter","Sort","Group"],a:0},
+{q:"75. Which tool filters pivot tables by timeline?",o:["Timeline","Slicer","Filter","Sort"],a:0},
+
+{q:"76. Which Excel feature consolidates multiple ranges?",o:["Data Consolidation","Merge","Group","Sort"],a:0},
+{q:"77. Which feature combines cells?",o:["Merge Cells","Group","Split","Freeze"],a:0},
+{q:"78. Which shortcut opens formula bar editing?",o:["F2","F4","Ctrl+F","Alt+F"],a:0},
+{q:"79. Which shortcut repeats last action?",o:["F4","F2","Ctrl+R","Ctrl+D"],a:0},
+{q:"80. Which shortcut auto sums selected cells?",o:["Alt+=","Ctrl+S","Alt+S","Ctrl+="],a:0},
+
+{q:"81. Which feature displays totals automatically in tables?",o:["Total Row","Subtotal","Sum Row","Auto Total"],a:0},
+{q:"82. Which feature groups data with subtotals?",o:["Subtotal","Group","Pivot","Sort"],a:0},
+{q:"83. Which feature removes formatting?",o:["Clear Formats","Delete","Remove","Erase"],a:0},
+{q:"84. Which feature checks spelling?",o:["Spell Check","Grammar","Review","Edit"],a:0},
+{q:"85. Which feature protects cell editing?",o:["Lock Cell","Protect Sheet","Hide","Freeze"],a:0},
+
+{q:"86. Which feature highlights top values?",o:["Conditional Formatting","Sort","Filter","Group"],a:0},
+{q:"87. Which feature creates drop-down list?",o:["Data Validation","Filter","Sort","Pivot"],a:0},
+{q:"88. Which function counts non-empty cells?",o:["COUNTA","COUNT","COUNTIF","SUM"],a:0},
+{q:"89. Which function counts numeric cells?",o:["COUNT","COUNTA","COUNTIF","SUM"],a:0},
+{q:"90. Which function multiplies numbers?",o:["PRODUCT","SUM","MULTIPLY","POWER"],a:0},
+
+{q:"91. Which function raises number to power?",o:["POWER","EXP","LOG","SQRT"],a:0},
+{q:"92. Which function returns square root?",o:["SQRT","POWER","EXP","LOG"],a:0},
+{q:"93. Which function returns exponential value?",o:["EXP","LOG","POWER","SQRT"],a:0},
+{q:"94. Which function returns logarithm?",o:["LOG","EXP","POWER","SQRT"],a:0},
+{q:"95. Which feature creates pivot filters?",o:["Slicer","Sort","Filter","Group"],a:0},
+
+{q:"96. Which feature manages relationships between tables?",o:["Power Pivot","Pivot","Solver","Scenario"],a:0},
+{q:"97. Which Excel feature records user actions?",o:["Macro Recorder","Audit","Track","Log"],a:0},
+{q:"98. Which feature encrypts workbook?",o:["Encrypt with Password","Protect Sheet","Lock","Hide"],a:0},
+{q:"99. Which Excel component contains formulas and functions?",o:["Formula Bar","Ribbon","Status Bar","Name Box"],a:0},
+{q:"100. Which Excel tool is used for business dashboards?",o:["Pivot Tables","Charts","Slicers","All of these"],a:3}
+],
+
+ComputerNetwork:[
+{q:"1. Computer networking means?",o:["Creating documents","Printing files","Connecting multiple computers","Installing software"],a:2},
+{q:"2. The main purpose of a computer network is?",o:["Image editing","Data sharing","Video recording","Game playing"],a:1},
+{q:"3. Which device connects computers in a network?",o:["Router","All of these","Switch","Modem"],a:1},
+{q:"4. Which topology uses a central hub?",o:["Ring","Star","Bus","Mesh"],a:1},
+{q:"5. Which topology connects each device to every other device?",o:["Bus","Mesh","Ring","Star"],a:1},
+
+{q:"6. Which topology forms a circle?",o:["Star","Bus","Ring","Tree"],a:2},
+{q:"7. Which topology uses a single backbone cable?",o:["Mesh","Star","Bus","Ring"],a:2},
+{q:"8. The full form of LAN is?",o:["Large Area Network","Local Area Network","Long Area Network","Light Area Network"],a:1},
+{q:"9. The full form of WAN is?",o:["Wide Area Network","Wireless Area Network","Web Area Network","World Area Network"],a:0},
+{q:"10. The full form of MAN is?",o:["Metropolitan Area Network","Main Area Network","Machine Area Network","Multi Area Network"],a:0},
+
+{q:"11. Internet is an example of?",o:["WAN","MAN","LAN","PAN"],a:0},
+{q:"12. Which protocol is used for web browsing?",o:["SMTP","FTP","HTTP","SNMP"],a:2},
+{q:"13. Secure version of HTTP is?",o:["FTPS","HTTPS","SMTPS","SHTTP"],a:1},
+{q:"14. Which protocol is used for file transfer?",o:["HTTP","FTP","SMTP","POP3"],a:1},
+{q:"15. Which protocol is used for sending email?",o:["SMTP","HTTP","FTP","IMAP"],a:0},
+
+{q:"16. Which protocol receives email?",o:["POP3","SMTP","HTTP","FTP"],a:0},
+{q:"17. Which protocol provides remote login?",o:["FTP","HTTP","Telnet","SMTP"],a:2},
+{q:"18. Which protocol encrypts remote login?",o:["Telnet","SSH","FTP","HTTP"],a:1},
+{q:"19. IP stands for?",o:["Internet Protocol","Internet Process","Internal Protocol","Interconnected Protocol"],a:0},
+{q:"20. IPv4 address size is?",o:["32 bit","128 bit","64 bit","16 bit"],a:0},
+
+{q:"21. IPv6 address size is?",o:["32 bit","64 bit","128 bit","256 bit"],a:2},
+{q:"22. Which layer handles routing?",o:["Transport Layer","Application Layer","Network Layer","Physical Layer"],a:2},
+{q:"23. OSI model has how many layers?",o:["5","6","7","4"],a:2},
+{q:"24. The top layer of OSI model is?",o:["Network Layer","Application Layer","Transport Layer","Data Link Layer"],a:1},
+{q:"25. The bottom layer of OSI model is?",o:["Physical Layer","Transport Layer","Session Layer","Network Layer"],a:0},
+
+{q:"26. Which layer handles encryption?",o:["Application Layer","Presentation Layer","Network Layer","Physical Layer"],a:1},
+{q:"27. Which layer manages sessions?",o:["Transport Layer","Application Layer","Session Layer","Network Layer"],a:2},
+{q:"28. Which layer ensures reliable communication?",o:["Transport Layer","Network Layer","Physical Layer","Session Layer"],a:0},
+{q:"29. Which layer handles logical addressing?",o:["Network Layer","Transport Layer","Application Layer","Data Link Layer"],a:0},
+{q:"30. Which layer handles MAC addressing?",o:["Network Layer","Data Link Layer","Transport Layer","Physical Layer"],a:1},
+
+{q:"31. Which layer transmits raw bits?",o:["Physical Layer","Transport Layer","Network Layer","Session Layer"],a:0},
+{q:"32. TCP stands for?",o:["Transfer Control Protocol","Transmission Control Protocol","Transport Communication Protocol","Terminal Control Protocol"],a:1},
+{q:"33. UDP stands for?",o:["Universal Data Protocol","User Datagram Protocol","Unified Data Protocol","User Data Process"],a:1},
+{q:"34. TCP is?",o:["Connection oriented","Connectionless","Wireless","Broadcast"],a:0},
+{q:"35. UDP is?",o:["Connection oriented","Connectionless","Encrypted","Secure"],a:1},
+
+{q:"36. DNS stands for?",o:["Domain Name System","Digital Network System","Domain Network Server","Data Name System"],a:0},
+{q:"37. DHCP stands for?",o:["Dynamic Host Configuration Protocol","Dynamic Host Control Protocol","Dynamic Hardware Configuration Protocol","Data Host Configuration Protocol"],a:0},
+{q:"38. MAC address size is?",o:["48 bit","32 bit","64 bit","16 bit"],a:0},
+{q:"39. Which device forwards packets between networks?",o:["Hub","Router","Repeater","Switch"],a:1},
+{q:"40. Which device broadcasts data to all ports?",o:["Hub","Router","Bridge","Switch"],a:0},
+
+{q:"41. Which device filters MAC addresses?",o:["Repeater","Hub","Switch","Modem"],a:2},
+{q:"42. Which device regenerates signals?",o:["Router","Repeater","Switch","Bridge"],a:1},
+{q:"43. Which device connects two networks?",o:["Bridge","Hub","Repeater","Switch"],a:0},
+{q:"44. Which device converts digital to analog signals?",o:["Modem","Router","Switch","Bridge"],a:0},
+{q:"45. Firewall is used for?",o:["File storage","Network security","Printing","Data transfer"],a:1},
+
+{q:"46. VPN stands for?",o:["Virtual Public Network","Virtual Private Network","Verified Private Network","Virtual Protected Network"],a:1},
+{q:"47. Packet is?",o:["Network cable","Unit of data transmission","Software","Storage device"],a:1},
+{q:"48. Bandwidth means?",o:["Network device","Data transfer capacity","Transmission delay","Storage size"],a:1},
+{q:"49. Latency means?",o:["Packet size","Delay in data transmission","Bandwidth","Data size"],a:1},
+{q:"50. Throughput means?",o:["Cable length","Actual data transfer rate","Network topology","Storage capacity"],a:1},
+
+{q:"51. Which protocol is used for secure web?",o:["HTTP","FTP","HTTPS","SMTP"],a:2},
+{q:"52. Port number for HTTP?",o:["80","21","110","25"],a:0},
+{q:"53. Port number for HTTPS?",o:["21","443","23","80"],a:1},
+{q:"54. Port number for FTP?",o:["110","25","21","80"],a:2},
+{q:"55. Port number for SMTP?",o:["25","110","80","21"],a:0},
+
+{q:"56. Port number for POP3?",o:["80","25","21","110"],a:3},
+{q:"57. Port number for DNS?",o:["53","25","80","21"],a:0},
+{q:"58. Which cable uses light signals?",o:["Fiber optic","UTP","Coaxial","Twisted pair"],a:0},
+{q:"59. Which cable is used in LAN?",o:["UTP","Coaxial","Fiber","STP"],a:0},
+{q:"60. Which connector used with Ethernet cable?",o:["USB","RJ45","RJ11","HDMI"],a:1},
+{q:"61. Wireless networking standard is?",o:["Bluetooth","Wi-Fi","Infrared","NFC"],a:1},
+{q:"62. IEEE standard for WiFi?",o:["802.11","802.3","802.5","802.15"],a:0},
+{q:"63. IEEE standard for Ethernet?",o:["802.5","802.11","802.3","802.15"],a:2},
+{q:"64. Bluetooth is used for?",o:["Satellite communication","Short range communication","Cable communication","Long range communication"],a:1},
+{q:"65. PAN stands for?",o:["Public Area Network","Personal Area Network","Primary Area Network","Private Area Network"],a:1},
+
+{q:"66. Which attack steals user information?",o:["Routing","Phishing","Forwarding","Switching"],a:1},
+{q:"67. Malware means?",o:["Malicious software","Hardware device","Network cable","Data packet"],a:0},
+{q:"68. Virus is?",o:["Network device","Malicious program","Protocol","Cable"],a:1},
+{q:"69. Worm is?",o:["Protocol","Self-replicating malware","Network switch","Cable"],a:1},
+{q:"70. Trojan horse is?",o:["Router","Malicious software disguised as legitimate","Firewall","Network protocol"],a:1},
+
+{q:"71. Encryption means?",o:["Deleting data","Converting data to secure form","Compressing data","Copying data"],a:1},
+{q:"72. Decryption means?",o:["Compressing data","Converting encrypted data to original","Copying data","Deleting data"],a:1},
+{q:"73. SSL stands for?",o:["Secure Sockets Layer","Secure Server Layer","System Security Layer","Secure Software Layer"],a:0},
+{q:"74. TLS stands for?",o:["Transport Layer Security","Transmission Link Security","Transfer Layer System","Transport Link Server"],a:0},
+{q:"75. NAT stands for?",o:["Network Access Transfer","Network Address Translation","Network Address Transport","Network Access Translation"],a:1},
+
+{q:"76. Private IP address example?",o:["8.8.8.8","1.1.1.1","192.168.1.1","172.0.0.1"],a:2},
+{q:"77. Loopback address?",o:["192.168.1.1","8.8.8.8","127.0.0.1","10.0.0.1"],a:2},
+{q:"78. Ping command is used to?",o:["Delete files","Test network connectivity","Open browser","Transfer files"],a:1},
+{q:"79. Traceroute command shows?",o:["IP address","Path of packets","Bandwidth","File size"],a:1},
+{q:"80. Subnetting is used for?",o:["Encrypting data","Dividing network","Sending packets","Combining networks"],a:1},
+
+{q:"81. Default gateway is?",o:["Router","Switch","Hub","Repeater"],a:0},
+{q:"82. Gateway connects?",o:["Same cables","Different networks","Same networks","Same devices"],a:1},
+{q:"83. FTP stands for?",o:["Fast Transfer Protocol","File Transfer Protocol","Fast Transport Program","File Transport Program"],a:1},
+{q:"84. SNMP stands for?",o:["Simple Network Management Protocol","System Network Monitoring Program","Secure Network Management Protocol","Simple Network Message Program"],a:0},
+{q:"85. ARP stands for?",o:["Address Routing Protocol","Address Resolution Protocol","Automatic Resolution Protocol","Address Relay Protocol"],a:1},
+
+{q:"86. ICMP is used for?",o:["Error reporting","File transfer","Email sending","Web browsing"],a:0},
+{q:"87. FTP works on which model?",o:["Hybrid","Peer to Peer","Client Server","Distributed"],a:2},
+{q:"88. Cloud computing provides?",o:["Hardware repair","Internet based services","Offline storage","Network cables"],a:1},
+{q:"89. CDN stands for?",o:["Content Delivery Network","Content Data Network","Central Data Network","Control Data Network"],a:0},
+{q:"90. ISP stands for?",o:["Internet Security Provider","Internet Service Provider","Internet System Protocol","Internal Service Provider"],a:1},
+
+{q:"91. Packet switching means?",o:["Single data transfer","Data divided into packets","Cable switching","Manual routing"],a:1},
+{q:"92. Circuit switching used in?",o:["LAN","Telephone network","WiFi","Internet"],a:1},
+{q:"93. DNS converts?",o:["Packet to data","IP to domain","Domain name to IP address","Binary to decimal"],a:2},
+{q:"94. Which protocol used in email retrieval?",o:["SMTP","HTTP","POP3","FTP"],a:2},
+{q:"95. Router works on which OSI layer?",o:["Network layer","Transport layer","Application layer","Data link layer"],a:0},
+
+{q:"96. Switch works on which layer?",o:["Network Layer","Transport Layer","Data Link Layer","Application Layer"],a:2},
+{q:"97. Hub works on which layer?",o:["Network Layer","Physical Layer","Transport Layer","Data Link Layer"],a:1},
+{q:"98. IP address identifies?",o:["User","File","Device on network","Cable"],a:2},
+{q:"99. Which command displays IP configuration?",o:["ping","netstat","ipconfig","tracert"],a:2},
+{q:"100. Computer networking mainly enables?",o:["Gaming only","Resource sharing","Video editing","Image design"],a:1}
+],
+
+CloudCyberInternet:[
+
+{q:"1. Cloud computing means?",o:["Manual computing","Internet based computing","Offline computing","Local storage"],a:1},
+{q:"2. AWS cloud service is provided by?",o:["Google","Amazon","Microsoft","IBM"],a:1},
+{q:"3. Microsoft cloud platform is?",o:["Azure","Digital Ocean","AWS","Oracle Cloud"],a:0},
+{q:"4. SaaS stands for?",o:["Software as a Service","Server as a Service","Storage as a Service","System as a Service"],a:0},
+{q:"5. PaaS stands for?",o:["Platform as a Service","Process as a Service","Package as a Service","Program as a Service"],a:0},
+{q:"6. IaaS stands for?",o:["Infrastructure as a Service","Internet as a Service","Instance as a Service","Integration as a Service"],a:0},
+{q:"7. Example of cloud storage?",o:["Google Drive","Paint","Excel","PowerPoint"],a:0},
+{q:"8. Hybrid cloud means?",o:["Private cloud","Public + Private cloud","Offline cloud","Public cloud"],a:1},
+{q:"9. Virtual machine means?",o:["Network cable","Virtual computer","Operating system","Hard disk"],a:1},
+{q:"10. Scalability means?",o:["Formatting disk","Encrypting files","Increasing or decreasing resources","Deleting servers"],a:2},
+
+{q:"11. CDN stands for?",o:["Content Delivery Network","Core Data Node","Central Data Network","Cloud Data Node"],a:0},
+{q:"12. Cyber security means?",o:["Creating virus","Protecting digital systems","Formatting computer","Deleting files"],a:1},
+{q:"13. Malware means?",o:["Security software","Operating system","Malicious software","Application"],a:2},
+{q:"14. Trojan horse is?",o:["Firewall","Antivirus","Malicious program disguised as legitimate","Network device"],a:2},
+{q:"15. Worm is?",o:["Self replicating malware","Firewall","Browser","Database"],a:0},
+{q:"16. Ransomware does?",o:["Locks data for money","Deletes RAM","Speeds computer","Formats disk"],a:0},
+{q:"17. Spyware does?",o:["Encrypt data","Monitors user activity","Deletes files","Formats disk"],a:1},
+{q:"18. Phishing attack means?",o:["Fake email to steal data","Firewall attack","Hardware attack","Software update"],a:0},
+{q:"19. Antivirus protects from?",o:["Printer error","Malware","Monitor error","Keyboard issue"],a:1},
+{q:"20. Firewall protects?",o:["CPU","Network security","Hard disk","Printer"],a:1},
+
+{q:"21. Encryption means?",o:["Delete data","Convert data into secret form","Backup data","Compress files"],a:1},
+{q:"22. Decryption means?",o:["Delete data","Convert encrypted data to original","Backup data","Compress data"],a:1},
+{q:"23. HTTPS provides?",o:["Secure communication","Offline browsing","Faster internet","More RAM"],a:0},
+{q:"24. OTP stands for?",o:["Open Transfer Protocol","One Time Password","Online Transfer Password","One Transfer Process"],a:1},
+{q:"25. VPN stands for?",o:["Virtual Public Network","Virtual Private Network","Verified Private Node","Visual Private Network"],a:1},
+
+{q:"26. Ethical hacking means?",o:["Illegal hacking","Legal security testing","Virus creation","Data stealing"],a:1},
+{q:"27. Black hat hacker is?",o:["Security expert","Malicious hacker","Programmer","Network admin"],a:1},
+{q:"28. Internet is?",o:["Operating system","Network of networks","Database","Programming language"],a:1},
+{q:"29. WWW stands for?",o:["World Wide Web","Wide World Web","World Web Wide","Web World Wide"],a:0},
+{q:"30. Web browser example?",o:["Linux","Chrome","Oracle","Windows"],a:1},
+
+{q:"31. URL stands for?",o:["Uniform Resource Locator","Unique Resource Link","Universal Resource Link","Uniform Reference Locator"],a:0},
+{q:"32. ISP stands for?",o:["Internet System Program","Internet Service Provider","Internal Service Protocol","Internet Support Program"],a:1},
+{q:"33. Email stands for?",o:["Electronic Mail","Easy Mail","Exchange Mail","Electric Mail"],a:0},
+{q:"34. SMTP protocol used for?",o:["Sending email","Receiving email","Browsing","Uploading files"],a:0},
+{q:"35. FTP stands for?",o:["File Transfer Protocol","Fast Transfer Protocol","File Transport Program","Fast Transport Process"],a:0},
+{q:"36. HTTP stands for?",o:["HyperText Transfer Protocol","Hyper Tool Transfer Protocol","High Transfer Protocol","HyperText Transport Process"],a:0},
+{q:"37. Domain example?",o:["CPU","google.com","192.168.1.1","Keyboard"],a:1},
+{q:"38. IP address example?",o:["Windows","192.168.1.1","Google.com","Chrome"],a:1},
+{q:"39. Search engine example?",o:["Google","Excel","Linux","PowerPoint"],a:0},
+{q:"40. Social media example?",o:["Facebook","Word","Paint","Excel"],a:0},
+
+{q:"41. Cookies store?",o:["Temporary user data","RAM","Programs","CPU"],a:0},
+{q:"42. Two factor authentication uses?",o:["Two browsers","Two passwords","Two verification methods","Two networks"],a:2},
+{q:"43. Data backup means?",o:["Delete data","Copy data for safety","Encrypt data","Format disk"],a:1},
+{q:"44. Digital signature ensures?",o:["Authentication","Compression","Backup","Deletion"],a:0},
+{q:"45. Botnet is?",o:["Network of infected computers","Cloud server","Firewall","Router"],a:0},
+
+{q:"46. DDoS attack means?",o:["Overloading server","Deleting files","Encrypting data","Installing OS"],a:0},
+{q:"47. Secure password should include?",o:["Numbers and symbols","Only letters","Only numbers","Only names"],a:0},
+{q:"48. Data breach means?",o:["Unauthorized data access","Data backup","Data compression","Data sorting"],a:0},
+{q:"49. Cyber crime example?",o:["Identity theft","Software update","Data backup","Printing"],a:0},
+{q:"50. Spam email means?",o:["Unwanted email","Official email","Work email","Secure email"],a:0},
+
+{q:"51. Router used for?",o:["Network connection","Printing","Scanning","Storage"],a:0},
+{q:"52. LAN stands for?",o:["Local Area Network","Large Area Network","Long Area Network","Low Area Network"],a:0},
+{q:"53. WAN stands for?",o:["Wide Area Network","Web Area Network","Wireless Area Network","World Area Network"],a:0},
+{q:"54. DNS stands for?",o:["Domain Name System","Data Network System","Digital Name Server","Domain Network Service"],a:0},
+{q:"55. Cloud backup advantage?",o:["Data safety","Virus creation","Slow speed","Hardware damage"],a:0},
+
+{q:"56. Authentication means?",o:["Verify identity","Delete data","Encrypt disk","Backup file"],a:0},
+{q:"57. Authorization means?",o:["Access permission","Virus removal","Password change","File compression"],a:0},
+{q:"58. Data integrity means?",o:["Data accuracy","Data deletion","Data duplication","Data transfer"],a:0},
+{q:"59. HTTPS port number?",o:["443","21","80","25"],a:0},
+{q:"60. HTTP port number?",o:["80","443","25","21"],a:0},
+
+{q:"61. FTP port?",o:["21","22","80","443"],a:0},
+{q:"62. SSH port?",o:["22","25","80","443"],a:0},
+{q:"63. Cloud elasticity means?",o:["Auto scaling","Manual scaling","File deletion","Disk formatting"],a:0},
+{q:"64. Data center stores?",o:["Servers","Printers","Scanners","Monitors"],a:0},
+{q:"65. Backup frequency should be?",o:["Regular","Never","Once","Rare"],a:0},
+
+{q:"66. Encryption key used for?",o:["Secure data","Delete data","Compress files","Backup disk"],a:0},
+{q:"67. Password cracking means?",o:["Breaking password security","Creating password","Saving password","Deleting password"],a:0},
+{q:"68. Cyber law deals with?",o:["Internet crimes","Hardware repair","Software design","Network cables"],a:0},
+{q:"69. HTTPS uses?",o:["SSL/TLS","FTP","SMTP","DNS"],a:0},
+{q:"70. SSL means?",o:["Secure Socket Layer","System Security Layer","Secure Software Layer","Server Socket Layer"],a:0},
+
+{q:"71. Firewall type example?",o:["Hardware firewall","Printer firewall","Scanner firewall","Monitor firewall"],a:0},
+{q:"72. VPN provides?",o:["Secure network","Fast internet","More storage","More RAM"],a:0},
+{q:"73. Malware detection tool?",o:["Antivirus","Compiler","Browser","Editor"],a:0},
+{q:"74. Keylogger records?",o:["Keystrokes","Mouse clicks","Screen","Printer"],a:0},
+{q:"75. Data encryption used for?",o:["Security","Speed","Backup","Deletion"],a:0},
+
+{q:"76. Cloud example?",o:["AWS","Excel","Word","Paint"],a:0},
+{q:"77. Google cloud service?",o:["GCP","GCS","GWS","GDS"],a:0},
+{q:"78. Azure owned by?",o:["Microsoft","Google","IBM","Oracle"],a:0},
+{q:"79. Cloud advantage?",o:["Scalability","Virus","Slow speed","Data loss"],a:0},
+{q:"80. Cloud disadvantage?",o:["Internet dependency","Offline access","Unlimited hardware","No security"],a:0},
+
+{q:"81. Online banking risk?",o:["Phishing","Printing","Formatting","Compiling"],a:0},
+{q:"82. CAPTCHA used for?",o:["Human verification","Data encryption","File deletion","Password cracking"],a:0},
+{q:"83. Backup storage example?",o:["External drive","Keyboard","Mouse","Monitor"],a:0},
+{q:"84. Antivirus update needed?",o:["Regularly","Never","Once","Rare"],a:0},
+{q:"85. Secure website shows?",o:["HTTPS","FTP","HTTP","SMTP"],a:0},
+
+{q:"86. Cloud computing benefit?",o:["Cost saving","Hardware damage","Virus spread","Slow network"],a:0},
+{q:"87. Identity theft means?",o:["Stealing personal data","Printing data","Saving data","Compressing data"],a:0},
+{q:"88. Data leak means?",o:["Unauthorized data exposure","Backup data","Delete data","Encrypt data"],a:0},
+{q:"89. Secure network uses?",o:["Encryption","Deletion","Formatting","Compression"],a:0},
+{q:"90. Malware example?",o:["Virus","Printer","Mouse","Keyboard"],a:0},
+
+{q:"91. Internet protocol example?",o:["TCP/IP","HTTP","FTP","All"],a:3},
+{q:"92. Data privacy means?",o:["Protect personal data","Delete data","Compress files","Backup disk"],a:0},
+{q:"93. Cyber attack example?",o:["Phishing","Backup","Printing","Formatting"],a:0},
+{q:"94. Secure login uses?",o:["Password","Username","OTP","All"],a:3},
+{q:"95. Internet speed unit?",o:["Mbps","Volt","Watt","Amp"],a:0},
+
+{q:"96. Cloud storage example?",o:["Dropbox","Word","Excel","Paint"],a:0},
+{q:"97. Cyber security goal?",o:["Protect systems","Delete files","Slow network","Crash server"],a:0},
+{q:"98. Network device example?",o:["Router","Keyboard","Mouse","Printer"],a:0},
+{q:"99. Data encryption purpose?",o:["Security","Backup","Speed","Delete"],a:0},
+{q:"100. Internet invented for?",o:["Communication","Printing","Scanning","Formatting"],a:0}
+
+],
+
+Python:[
+
+{q:"1. Python is?",o:["Database","Programming language","Browser","Operating system"],a:1},
+{q:"2. Python was created by?",o:["Dennis Ritchie","Guido van Rossum","James Gosling","Bjarne Stroustrup"],a:1},
+{q:"3. Python first released in?",o:["1991","2000","1989","1995"],a:0},
+{q:"4. Python file extension?",o:[".java",".py",".cpp",".js"],a:1},
+{q:"5. Python is which type language?",o:["Machine","Interpreted","Assembly","Compiled"],a:1},
+
+{q:"6. Output function in Python?",o:["print()","echo()","display()","write()"],a:0},
+{q:"7. Python comment symbol?",o:["#","//","/*","<!--"],a:0},
+{q:"8. Variable assignment in Python?",o:["int x=5","var x=5","x=5","let x=5"],a:2},
+{q:"9. Which datatype stores text?",o:["int","str","float","bool"],a:1},
+{q:"10. Boolean values in Python?",o:["True/False","Yes/No","1/0","On/Off"],a:0},
+
+{q:"11. Python list is?",o:["Ordered collection","Loop","Function","Database"],a:0},
+{q:"12. Tuple is?",o:["Mutable","Immutable","Loop","Function"],a:1},
+{q:"13. Dictionary stores?",o:["Key value pairs","Numbers","Files","Functions"],a:0},
+{q:"14. Set stores?",o:["Unique elements","Duplicate elements","Files","Functions"],a:0},
+{q:"15. Function keyword?",o:["function","define","def","func"],a:2},
+
+{q:"16. Loop repeating fixed times?",o:["while","for","if","switch"],a:1},
+{q:"17. While loop runs?",o:["Until condition false","Once","Never","Fixed times"],a:0},
+{q:"18. break statement?",o:["Stops loop","Repeats loop","Ends program","Skips iteration"],a:0},
+{q:"19. continue statement?",o:["Stops loop","Skips iteration","Ends program","Deletes variable"],a:1},
+{q:"20. Input from user?",o:["input()","read()","scan()","get()"],a:0},
+
+{q:"21. Python package manager?",o:["pip","npm","gem","apt"],a:0},
+{q:"22. Python used for?",o:["Web development","Data science","AI","All of these"],a:3},
+{q:"23. Library for data analysis?",o:["NumPy","Pandas","Flask","Matplotlib"],a:1},
+{q:"24. Library for numerical computing?",o:["NumPy","Django","Requests","Flask"],a:0},
+{q:"25. Python web framework?",o:["Laravel","Django","Spring","Rails"],a:1},
+
+{q:"26. Python indentation used for?",o:["Code block","Loop","Variable","Function"],a:0},
+{q:"27. Python supports?",o:["OOP","Procedural","Functional","All"],a:3},
+{q:"28. Python operator for exponent?",o:["^","**","//","%%"],a:1},
+{q:"29. Floor division operator?",o:["//","/","%","**"],a:0},
+{q:"30. Modulus operator?",o:["%","//","/","**"],a:0},
+
+{q:"31. Python list index starts from?",o:["1","0","-1","2"],a:1},
+{q:"32. Length function?",o:["count()","size()","len()","length()"],a:2},
+{q:"33. Add element to list end?",o:["append()","add()","insert()","push()"],a:0},
+{q:"34. Remove element from list?",o:["delete()","remove()","erase()","cut()"],a:1},
+{q:"35. Insert element at index?",o:["append()","insert()","add()","push()"],a:1},
+
+{q:"36. Python keyword for class?",o:["define","class","object","struct"],a:1},
+{q:"37. Constructor method?",o:["init()","__init__()","constructor()","start()"],a:1},
+{q:"38. Self keyword refers to?",o:["Class","Current object","Parent object","Module"],a:1},
+{q:"39. Inheritance keyword?",o:["extends","inherits","class","None"],a:3},
+{q:"40. Python supports multiple inheritance?",o:["Yes","No","Only single","Only double"],a:0},
+
+{q:"41. File open function?",o:["read()","open()","file()","load()"],a:1},
+{q:"42. File write method?",o:["save()","write()","print()","store()"],a:1},
+{q:"43. File read method?",o:["read()","open()","scan()","print()"],a:0},
+{q:"44. Close file method?",o:["close()","end()","finish()","stop()"],a:0},
+{q:"45. Exception handling keyword?",o:["catch","try","error","fix"],a:1},
+
+{q:"46. Error handling block?",o:["try-except","try-catch","error-catch","catch-final"],a:0},
+{q:"47. Finally block executes?",o:["Always","Sometimes","Never","Rarely"],a:0},
+{q:"48. Raise keyword used for?",o:["Create exception","Stop program","Delete variable","Print error"],a:0},
+{q:"49. Python module example?",o:["math","data","loop","system"],a:0},
+{q:"50. Import module keyword?",o:["include","require","import","load"],a:2},
+
+{q:"51. Random numbers module?",o:["random","math","sys","time"],a:0},
+{q:"52. Square root function?",o:["sqrt()","square()","root()","power()"],a:0},
+{q:"53. Python IDE example?",o:["PyCharm","Chrome","Excel","Paint"],a:0},
+{q:"54. Python interpreter converts?",o:["Code to machine code","Binary to text","Text to numbers","Data to files"],a:0},
+{q:"55. Python dynamic typing means?",o:["Type declared automatically","Manual typing","Binary typing","Static typing"],a:0},
+
+{q:"56. Python loop example?",o:["for","if","switch","case"],a:0},
+{q:"57. Range function used for?",o:["Generating sequence","Sorting data","Printing text","File reading"],a:0},
+{q:"58. Lambda used for?",o:["Anonymous function","Loop","Class","Module"],a:0},
+{q:"59. Map function used for?",o:["Apply function to list","Create map","Store data","Delete list"],a:0},
+{q:"60. Filter function used for?",o:["Filter elements","Sort list","Delete items","Append list"],a:0},
+
+{q:"61. Reduce function located in?",o:["functools","math","sys","random"],a:0},
+{q:"62. Python supports recursion?",o:["Yes","No","Only loops","Only classes"],a:0},
+{q:"63. Python string immutable?",o:["Yes","No","Sometimes","Rarely"],a:0},
+{q:"64. Convert string to int?",o:["int()","str()","float()","bool()"],a:0},
+{q:"65. Convert int to string?",o:["str()","int()","float()","bool()"],a:0},
+
+{q:"66. Python operator for equality?",o:["==","=","!=","<>"],a:0},
+{q:"67. Not equal operator?",o:["!=","==","<>","="],a:0},
+{q:"68. Greater than operator?",o:[">","<","=","!="],a:0},
+{q:"69. Less than operator?",o:["<",">","=","!="],a:0},
+{q:"70. Logical AND operator?",o:["and","&&","AND","&"],a:0},
+
+{q:"71. Logical OR operator?",o:["or","||","OR","|"],a:0},
+{q:"72. Logical NOT operator?",o:["not","!","NOT","~"],a:0},
+{q:"73. Python indexing example?",o:["a[0]","a{0}","a(0)","a<0>"],a:0},
+{q:"74. String method upper?",o:["upper()","capitalize()","big()","max()"],a:0},
+{q:"75. String method lower?",o:["lower()","small()","min()","down()"],a:0},
+
+{q:"76. Split string method?",o:["split()","cut()","break()","slice()"],a:0},
+{q:"77. Join strings method?",o:["join()","merge()","connect()","add()"],a:0},
+{q:"78. Python comment multiple lines?",o:["''' '''","//","<!-- -->","##"],a:0},
+{q:"79. Python list comprehension used for?",o:["Compact loops","Sorting","File reading","Printing"],a:0},
+{q:"80. Python supports GUI via?",o:["Tkinter","HTML","CSS","Bootstrap"],a:0},
+
+{q:"81. Python library for plotting?",o:["Matplotlib","NumPy","Pandas","TensorFlow"],a:0},
+{q:"82. Python ML library?",o:["TensorFlow","Excel","Word","Paint"],a:0},
+{q:"83. Python AI use?",o:["Machine learning","Printing","Scanning","Formatting"],a:0},
+{q:"84. Python scripting means?",o:["Automation","Printing","Formatting","Backup"],a:0},
+{q:"85. Python cross platform?",o:["Yes","No","Only Windows","Only Linux"],a:0},
+
+{q:"86. Python open source?",o:["Yes","No","Paid","Closed"],a:0},
+{q:"87. Python compiled before run?",o:["No","Yes","Sometimes","Rarely"],a:0},
+{q:"88. Python indentation spaces usually?",o:["4","2","8","1"],a:0},
+{q:"89. Python multiline string?",o:["'''text'''","//text","<!--text-->","##text"],a:0},
+{q:"90. Python package example?",o:["NumPy","Excel","Paint","Word"],a:0},
+
+{q:"91. Python framework example?",o:["Flask","Spring","Laravel","Rails"],a:0},
+{q:"92. Python used in?",o:["Web","AI","Data science","All"],a:3},
+{q:"93. Python file executed by?",o:["Interpreter","Compiler","Browser","Database"],a:0},
+{q:"94. Python interactive shell?",o:["REPL","SQL","CMD","DOS"],a:0},
+{q:"95. Python memory management?",o:["Automatic","Manual","Hybrid","Static"],a:0},
+
+{q:"96. Python supports garbage collection?",o:["Yes","No","Partial","Rare"],a:0},
+{q:"97. Python documentation website?",o:["python.org","google.com","github.com","oracle.com"],a:0},
+{q:"98. Python package installation command?",o:["pip install","apt install","npm install","yum install"],a:0},
+{q:"99. Python latest versions maintain?",o:["Python Software Foundation","Google","Microsoft","IBM"],a:0},
+{q:"100. Python mainly used for?",o:["Automation","AI","Data science","All of these"],a:3}
+
 ]
 
 };
 
-let quizData=[];
-let totalQuestions=0;
+//////////////////////////
+// GLOBAL VARIABLES
+//////////////////////////
+
+let currentQuiz=[]
+let quizName=""
+let totalQuestions=0
 
 //////////////////////////
-//// LOAD QUIZ
+// LOAD QUIZ
 //////////////////////////
 
 function loadQuiz(topic){
 
-quizData=quizzes[topic];
+quizName=topic
+currentQuiz=quizzes[topic]
 
-totalQuestions=quizData.length;
+document.getElementById("topicPage").style.display="none"
+document.getElementById("quizPage").style.display="block"
 
-document.getElementById("topicPage").style.display="none";
-document.getElementById("quizPage").style.display="block";
+document.getElementById("quizTitle").innerText=topic+" Quiz"
 
-document.getElementById("quizTitle").innerText=topic.toUpperCase()+" Quiz";
+renderQuiz()
 
-const quizForm=document.getElementById("quizForm");
+}
 
-quizForm.innerHTML="";
+//////////////////////////
+// RENDER QUESTIONS
+//////////////////////////
 
-quizData.forEach((data,index)=>{
+function renderQuiz(){
 
-let qDiv=document.createElement("div");
+const form=document.getElementById("quizForm")
+form.innerHTML=""
 
-qDiv.classList.add("question");
+totalQuestions=currentQuiz.length
 
-let html=`<p>${data.q}</p><div class="options">`;
+currentQuiz.forEach((q,index)=>{
 
-data.o.forEach((opt,i)=>{
+let optionsHTML=""
 
-html+=`
+q.o.forEach((opt,i)=>{
 
-<label>
-
-<input type="radio" name="q${index}" value="${i}">
-
+optionsHTML+=`
+<div class="option">
+<input type="radio" id="q${index}_${i}" name="q${index}" value="${i}">
+<label for="q${index}_${i}">
 ${opt}
-
 </label>
+</div>
+`
 
-`;
+})
 
-});
+form.innerHTML+=`
 
-html+="</div>";
+<div class="question">
 
-qDiv.innerHTML=html;
+<h3>${q.q}</h3>
 
-quizForm.appendChild(qDiv);
+${optionsHTML}
 
-});
+</div>
 
-}
+`
 
-//////////////////////////
-//// SUBMIT QUIZ
-//////////////////////////
+})
 
-function submitQuiz(){
-
-let score=0;
-
-quizData.forEach((data,index)=>{
-
-let selected=document.querySelector(`input[name="q${index}"]:checked`);
-
-let options=document.getElementsByName(`q${index}`);
-
-options.forEach((opt,i)=>{
-
-let label=opt.parentElement;
-
-if(i==data.a){
-
-label.classList.add("correct");
-
-}
-
-if(selected && i==selected.value && i!=data.a){
-
-label.classList.add("wrong");
-
-}
-
-});
-
-if(selected && selected.value==data.a){
-
-score++;
-
-}
-
-});
-
-document.getElementById("result").innerHTML="Your Score: "+score+" / "+quizData.length;
-
-window.scrollTo(0,document.body.scrollHeight);
+updateProgress()
 
 }
 
 //////////////////////////
-//// PROGRESS BAR
+// PROGRESS BAR
+//////////////////////////
+
+function updateProgress(){
+
+let answered=0
+
+for(let i=0;i<totalQuestions;i++){
+
+if(document.querySelector(`input[name="q${i}"]:checked`)){
+answered++
+}
+
+}
+
+let percent=(answered/totalQuestions)*100
+
+document.getElementById("progressBar").style.width=percent+"%"
+
+}
+
+//////////////////////////
+// LISTEN RADIO CHANGE
 //////////////////////////
 
 document.addEventListener("change",function(e){
 
 if(e.target.type==="radio"){
+updateProgress()
+}
 
-let answered=document.querySelectorAll("input[type=radio]:checked").length;
+})
 
-let percent=(answered/totalQuestions)*100;
+//////////////////////////
+// SUBMIT QUIZ
+//////////////////////////
 
-document.getElementById("progressBar").style.width=percent+"%";
+function submitQuiz(){
+
+let score=0
+
+currentQuiz.forEach((q,index)=>{
+
+const selected=document.querySelector(`input[name="q${index}"]:checked`)
+
+const options=document.querySelectorAll(`input[name="q${index}"]`)
+
+options.forEach(opt=>{
+
+let label=opt.nextElementSibling
+
+opt.disabled=true
+
+if(opt.value==q.a){
+
+label.classList.add("correct")
 
 }
 
-});
+})
+
+if(selected){
+
+if(selected.value==q.a){
+
+score++
+
+}else{
+
+selected.nextElementSibling.classList.add("wrong")
+
+}
+
+}
+
+})
+
+document.getElementById("result").innerHTML=
+`Your Score: <b>${score} / ${totalQuestions}</b>`
+
+window.scrollTo(0,document.body.scrollHeight)
+
+}
+
+//////////////////////////
+// GO BACK HOME
+//////////////////////////
 
 function goHome(){
 
-document.getElementById("quizPage").style.display="none";
-document.getElementById("topicPage").style.display="block";
+document.getElementById("quizPage").style.display="none"
+document.getElementById("topicPage").style.display="block"
 
-document.getElementById("quizForm").innerHTML="";
-document.getElementById("result").innerHTML="";
-
-document.getElementById("progressBar").style.width="0%";
+document.getElementById("quizForm").innerHTML=""
+document.getElementById("result").innerHTML=""
+document.getElementById("progressBar").style.width="0%"
 
 }
 
